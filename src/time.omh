@@ -1,0 +1,8 @@
+$begin time$$
+
+$section Timing Tests$$
+
+$childtable%time.cpp
+%$$
+
+$end
