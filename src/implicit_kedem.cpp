@@ -6,7 +6,7 @@ $begin test_circle_implicit_kedem$$
 
 $section Example / Test of Implicit Wagner Class$$
 
-$srcfile%implicit_kedem.cpp%
+$srcfile%src/implicit_kedem.cpp%
 	0%// BEGIN_TEST_CIRCLE_IMPLICIT_WAGNER%// END_TEST_CIRCLE_IMPLICIT_WAGNER%
 1%$$
 

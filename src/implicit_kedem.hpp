@@ -195,7 +195,7 @@ $latex \[
 to determine the proper value for $latex y^k$$.
 
 $children%
-	implicit_kedem.cpp
+	src/implicit_kedem.cpp
 %$$
 $head Example$$
 The routine $cref test_circle_implicit_kedem$$ is a simple example

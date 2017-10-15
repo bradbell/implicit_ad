@@ -9,7 +9,7 @@
 -------------------------------------------------------------------------------
 $begin notation$$
 $spell
-	hpp
+src/.hpp
 $$
 
 $section Notation$$
@@ -48,7 +48,7 @@ $end
 ------------------------------------------------------------------------------
 $begin norm_squared$$
 $spell
-	hpp
+src/.hpp
 $$
 
 $section Norm Squared of a Vector$$
@@ -66,7 +66,7 @@ $end
 ------------------------------------------------------------------------------
 $begin join_vector$$
 $spell
-	hpp
+src/.hpp
 $$
 
 $section Join Two Vectors$$
@@ -95,7 +95,7 @@ $spell
 	Eigen
 	cppad
 	cols
-	hpp
+src/.hpp
 $$
 
 $section Convert A CppAD Sparse Matrix to an Eigen Sparse Matrix$$
@@ -106,7 +106,7 @@ $codei%#include "utility.hpp"
 $codei%sparse_cppad2eigen(%sparse_cppad%, %sparse_eigen)%$$.
 
 $head Prototype$$
-$srcfile%utility.hpp%
+$srcfile%src/utility.hpp%
 0%// BEGIN_SPARSE_CPPAD2EIGEN_PROTOTYPE%// END_SPARSE_CPPAD2EIGEN_PROTOTYPE%
 1%$$
 
@@ -122,7 +122,7 @@ $code sparse_cppad2eigen$$
 with the same sparsity pattern in $code cppad_sparse$$.
 
 $head Example$$
-$srcfile%utility.cpp%
+$srcfile%src/utility.cpp%
 	0%// BEGIN_TEST_SPARSE_CPPAD2EIGEN%// END_TEST_SPARSE_CPPAD2EIGEN%$$
 
 $end
@@ -181,7 +181,7 @@ $spell
 	nr
 	nc
 	cppad
-	hpp
+src/.hpp
 $$
 
 $section Solve a CppAD Sparse Lower Triangular System$$
@@ -192,7 +192,7 @@ $codei%#include "utility.hpp"
 $icode%msg% = solve_lower_cppad(%A%, %x%, %b%)%$$
 
 $head Prototype$$
-$srcfile%utility.hpp%
+$srcfile%src/utility.hpp%
 0%// BEGIN_SOLVE_LOWER_CPPAD_PROTOTYPE%// END_SOLVE_LOWER_CPPAD_PROTOTYPE%
 1%$$
 
@@ -220,7 +220,7 @@ $codei%
 %$$.
 
 $head Example$$
-$srcfile%utility.cpp%
+$srcfile%src/utility.cpp%
 	0%// BEGIN_TEST_SOLVE_LOWER_CPPAD%// END_TEST_SOLVE_LOWER_CPPAD%$$
 
 $end
@@ -310,7 +310,7 @@ $head Syntax$$
 $codei%jac_constraint(%L_y%, %L_fun%, %xy%, %work%)%$$
 
 $head Prototype$$
-$srcfile%utility.hpp
+$srcfile%src/utility.hpp
 	%0%// BEGIN_JAC_CONSTRAINT_PROTOTYPE%// END_JAC_CONSTRAINT_PROTOTYPE%
 1%$$
 
@@ -356,11 +356,11 @@ Otherwise, they should remain unchanged from their previous return value.
 $head Example$$
 
 $subhead Simple$$
-$srcfile%utility.cpp%
+$srcfile%src/utility.cpp%
 	0%// BEGIN_TEST_JAC_CONSTRAINT%// END_TEST_JAC_CONSTRAINT%$$
 
 $subhead Control Problem$$
-$srcfile%utility.cpp%
+$srcfile%src/utility.cpp%
 	0%// BEGIN_TEST_CONTROL_JAC_CONSTRAINT%// END_TEST_CONTROL_JAC_CONSTRAINT%$$
 
 $end

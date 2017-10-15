@@ -6,7 +6,7 @@ $begin test_circle_implicit_newton$$
 
 $section Example / Test of Implicit Newton Class$$
 
-$srcfile%implicit_newton.cpp%
+$srcfile%src/implicit_newton.cpp%
 	0%// BEGIN_TEST_CIRCLE_IMPLICIT_NEWTON%// END_TEST_CIRCLE_IMPLICIT_NEWTON%
 1%$$
 

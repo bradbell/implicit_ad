@@ -72,7 +72,7 @@ $head size$$
 This is the number time points in the problem; i.e.,
 the value of $icode J$$ for this test.
 
-$srcfile%time.cpp%
+$srcfile%src/time.cpp%
 	0%// BEGIN_REPEAT_KEDEM_GRADIENT%// END_REPEAT_KEDEM_GRADIENT%
 1%$$
 
@@ -187,7 +187,7 @@ $head size$$
 This is the number time points in the problem; i.e.,
 the value of $icode J$$ for this test.
 
-$srcfile%time.cpp%
+$srcfile%src/time.cpp%
 	0%// BEGIN_REPEAT_NEWTON_GRADIENT%// END_REPEAT_NEWTON_GRADIENT%
 1%$$
 
@@ -321,7 +321,7 @@ $head size$$
 This is the number time points in the problem; i.e.,
 the value of $icode J$$ for this test.
 
-$srcfile%time.cpp%
+$srcfile%src/time.cpp%
 	0%// BEGIN_REPEAT_KEDEM_HESSIAN%// END_REPEAT_KEDEM_HESSIAN%
 1%$$
 
@@ -462,7 +462,7 @@ $head size$$
 This is the number time points in the problem; i.e.,
 the value of $icode J$$ for this test.
 
-$srcfile%time.cpp%
+$srcfile%src/time.cpp%
 	0%// BEGIN_REPEAT_NEWTON_HESSIAN%// END_REPEAT_NEWTON_HESSIAN%
 1%$$
 

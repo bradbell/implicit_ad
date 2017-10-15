@@ -364,7 +364,7 @@ This example / test compares derivatives of $latex R(x)$$
 computed by the Kedem, Full Newton, and Partial Newton methods.
 
 $head Source$$
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_REDUCED_OBJECTIVE%// END_TEST_REDUCED_OBJECTIVE%
 1%$$
 

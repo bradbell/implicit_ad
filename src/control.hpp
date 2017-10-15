@@ -40,7 +40,7 @@ $head Syntax$$
 $icode%F% = control::objective(%delta_t%, %q%, %x%, %y%)%$$
 
 $head Prototype$$
-$srcfile%control.hpp
+$srcfile%src/control.hpp
 	%0%// BEGIN_OBJECTIVE_PROTOTYPE%// END_OBJECTIVE_PROTOTYPE%
 1%$$
 
@@ -61,7 +61,7 @@ F (x, y)
 \] $$
 
 $head Example$$
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_OBJECTIVE%// END_TEST_OBJECTIVE%$$
 
 $end
@@ -105,7 +105,7 @@ $head Syntax$$
 $codei%control::rec_objective(%F_fun%, %J%, %delta_t%, %q%)%$$
 
 $head Prototype$$
-$srcfile%control.hpp
+$srcfile%src/control.hpp
 	%0%// BEGIN_REC_OBJECTIVE_PROTOTYPE%// END_REC_OBJECTIVE_PROTOTYPE%
 1%$$
 
@@ -196,7 +196,7 @@ $head Syntax$$
 $icode%L% = control::constraint(%delta_t%, %p%, %x%, %y%)%$$
 
 $head Prototype$$
-$srcfile%control.hpp
+$srcfile%src/control.hpp
 	%0%// BEGIN_CONSTRAINT_PROTOTYPE%// END_CONSTRAINT_PROTOTYPE%
 1%$$
 
@@ -226,7 +226,7 @@ $latex \[
 for $latex j = 1, \ldots , J - 1$$.
 
 $head Example$$
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_CONSTRAINT%// END_TEST_CONSTRAINT%$$
 
 $end
@@ -287,7 +287,7 @@ $head Syntax$$
 $codei%control::rec_constraint(%L_fun%, %J%, %delta_t%, %p%)%$$
 
 $head Prototype$$
-$srcfile%control.hpp
+$srcfile%src/control.hpp
 	%0%// BEGIN_REC_CONSTRAINT_PROTOTYPE%// END_REC_CONSTRAINT_PROTOTYPE%
 1%$$
 
@@ -337,13 +337,13 @@ $head Example$$
 $subhead ADFun<double>$$
 The following example records the constraint as an
 $code ADFun<double>$$ object.
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_REC_CONSTRAINT%// END_TEST_REC_CONSTRAINT%$$
 
 $subhead ADFun< AD<double> >$$
 The following example records the constraint as an
 $code ADFun< AD<double> >$$ object.
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_AD_REC_CONSTRAINT%// END_TEST_AD_REC_CONSTRAINT%$$
 
 $end
@@ -408,7 +408,7 @@ $icode%num_itr% = control::full_newton(
 )%$$
 
 $head Prototype$$
-$srcfile%control.hpp
+$srcfile%src/control.hpp
 	%0%// BEGIN_FULL_NEWTON_PROTOTYPE%// END_FULL_NEWTON_PROTOTYPE%
 1%$$
 
@@ -465,7 +465,7 @@ If $icode%num_itr% == %max_itr%$$,
 the convergence criteria may not be satisfied.
 
 $head Example$$
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 	0%// BEGIN_TEST_FULL_NEWTON%// END_TEST_FULL_NEWTON%$$
 
 $end
@@ -636,7 +636,7 @@ The type $icode Scalar$$ is either
 $code double$$ or $code CppAD::AD<double>$$.
 
 $head Example$$
-$srcfile%control.cpp%
+$srcfile%src/control.cpp%
 0%// BEGIN_TEST_CONTROL_IMPLICIT_SOLVER%// END_TEST_CONTROL_IMPLICIT_SOLVER%$$
 
 $end

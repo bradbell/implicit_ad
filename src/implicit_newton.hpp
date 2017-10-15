@@ -209,7 +209,7 @@ The value $icode%dw%[%i%*%q%+%k%]%$$ is the partial of
 $latex W[r(X)]%$$ with respect to $latex X_i^k$$.
 
 $children%
-	implicit_newton.cpp
+	src/implicit_newton.cpp
 %$$
 $head Example$$
 The routine $cref test_circle_implicit_newton$$

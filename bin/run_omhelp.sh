@@ -10,5 +10,5 @@ then
 	mkdir doc
 fi
 cd doc
-omhelp ../src/implicit_ad.omh -debug -noframe -xml
-omhelp ../src/implicit_ad.omh -debug -noframe
+omhelp ../implicit_ad.omh -debug -noframe -xml
+omhelp ../implicit_ad.omh -debug -noframe

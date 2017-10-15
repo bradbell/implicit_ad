@@ -2,8 +2,8 @@ $begin control$$
 
 $section The Control Test Problem$$
 
-$childtable%control.hpp
-	%control.cpp
+$childtable%src/control.hpp
+	%src/control.cpp
 %$$
 
 $end

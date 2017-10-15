@@ -8,12 +8,12 @@ $comment END global settings$$
 
 $section AD Methods That Differentiate Implicit Functions$$
 
-$childtable%../bin/run_cmake.sh
-	%utility.omh
-	%implicit_kedem.hpp
-	%implicit_newton.hpp
-	%control.omh
-	%time.omh
+$childtable%bin/run_cmake.sh
+	%src/utility.omh
+	%src/implicit_kedem.hpp
+	%src/implicit_newton.hpp
+	%src/control.omh
+	%src/time.omh
 %$$
 
 $end

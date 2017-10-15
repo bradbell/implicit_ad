@@ -2,7 +2,7 @@ $begin time$$
 
 $section Timing Comparison of Methods$$
 
-$childtable%time.cpp
+$childtable%src/time.cpp
 %$$
 
 $end
