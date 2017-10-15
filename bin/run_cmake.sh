@@ -37,6 +37,16 @@
 set -e
 # %&&
 #
+# &head Check Working Directory&&
+# Check that the current working directory is the top level source directory.
+# &srccode%sh%
+if [ "$0" != 'bin/run_cmake.sh' ]
+then
+	echo 'bin/run_cmake.sh: must be run from its parent directory'
+	exit 1
+fi
+# %&&
+#
 # &head cppad_pkg_config_path&&
 # This is the directory where the file &code cppad.pc&& file is located
 # &srccode%sh%
