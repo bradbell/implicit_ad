@@ -1,12 +1,12 @@
 /*
-$begin check$$
+$begin main$$
 $aindex section head subhead$$
 $latex \newcommand{\B}[1]{{\bf #1}}$$
 $latex \newcommand{\R}[1]{{\rm #1}}$$
 
 $section Check Implicit Function Derivative Computations$$
 
-$contents%utility.hpp
+$contents%src/utility.hpp
 	%implicit_kedem.hpp
 	%implicit_newton.hpp
 	%control.hpp

@@ -2,6 +2,8 @@
 git_commit.sh
 # directory where object and executables are built
 build
+# temporary directory used for stashing files
+new
 # temporary files
 junk
 junk.*
