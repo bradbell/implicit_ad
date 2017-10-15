@@ -49,6 +49,10 @@ cp bin/gh_pages.sh build/gh_pages.sh
 git reset --hard
 #
 # checkout gh-pages branch
+if [ -e doc ]
+then
+	rm -r doc
+fi
 git checkout gh-pages
 #
 # determine which files to remove
@@ -76,7 +80,7 @@ done
 #
 cat << EOF
 The following command can be used to see the changes to gh-pages branch:
-	git diff
+	git status -s
 
 The following command can be used to commit the chnages to gh-pages branch:
 	git commit -m 'update gh-pages to master $hash'
