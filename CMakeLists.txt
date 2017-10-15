@@ -1,24 +1,20 @@
 #
-# print_variable(variable)
-MACRO(print_variable variable)
-	MESSAGE(STATUS "${variable} = ${${variable}}" )
-ENDMACRO(print_variable)
-#
+# preamble
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
-PROJECT(newton_step)
-SET(newton_step_version "20171014")
+PROJECT(implicit_ad)
+SET(implicit_ad_version "20171014")
 #
-# must have pkg-config
+# find pkg-config
 FIND_PACKAGE(PkgConfig)
 #
 # use pkg-config to find include directories
 FOREACH(package cppad eigen3)
 	pkg_check_modules(${package} REQUIRED ${package})
-	print_variable(${package}_INCLUDE_DIRS)
+	MESSAGE(STATUS "${package}_INCLUDE_DIRS = ${${package}_INCLUDE_DIRS}")
 	INCLUDE_DIRECTORIES( ${${package}_INCLUDE_DIRS} )
 ENDFOREACH(package)
 #
-#
+# check
 ADD_EXECUTABLE(check
 	src/check.cpp
 	src/control.cpp
@@ -26,6 +22,7 @@ ADD_EXECUTABLE(check
 	src/implicit_kedem.cpp
 	src/implicit_newton.cpp
 )
+# time
 ADD_EXECUTABLE(time
 	src/time.cpp
 )
