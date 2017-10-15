@@ -9,6 +9,10 @@ MACRO(print_variable variable_name)
 	MESSAGE(STATUS "${variable_name} = ${${variable_name}}")
 ENDMACRO(print_variable)
 #
+# cmake variables that affect build
+print_variable(CMAKE_VERBOSE_MAKEFILE)
+print_variable(CMAKE_BUILD_TYPE)
+#
 SET(extra_cxx_flags "" CACHE STRING
 	"Additional C++ compile flags, besides debug and release flags"
 )
