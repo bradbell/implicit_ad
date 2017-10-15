@@ -1,0 +1,306 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Execute Full Newton Steps For Control Constraint</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Execute Full Newton Steps For Control Constraint">
+<meta name="keywords" id="keywords" content=" execute full newton steps control constraint syntax prototype purpose xy_in xy_out l_fun criteria max_itr l_y work num_itr example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_full_newton_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="rec_constraint.htm" target="_top">Prev</a>
+</td><td><a href="implicit_solver.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>control</option>
+<option>full_newton</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>control-&gt;</option>
+<option>vector_matrix</option>
+<option>objective</option>
+<option>rec_objective</option>
+<option>constraint</option>
+<option>rec_constraint</option>
+<option>full_newton</option>
+<option>implicit_solver</option>
+<option>test_control_reduced_objective</option>
+</select>
+</td>
+<td>full_newton</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Prototype</option>
+<option>Purpose</option>
+<option>xy_in</option>
+<option>xy_out</option>
+<option>L_fun</option>
+<option>criteria</option>
+<option>max_itr</option>
+<option>L_y</option>
+<option>work</option>
+<option>num_itr</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Execute Full Newton Steps For Control Constraint</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><i><font color="black"><span style='white-space: nowrap'>num_itr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;control::full_newton(<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>xy_out</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>xy_in</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>criteria</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>max_itr</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L_y</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>work</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+)</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Prototype" id="Prototype">Prototype</a></big></b>
+
+<pre><tt>
+<b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Scalar</font><font color="#990000">&gt;</font> size_t
+<b><font color="#000000">full_newton</font></b><font color="#990000">(</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font>                                    xy_out        <font color="#990000">,</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font>                              xy_in         <font color="#990000">,</font>
+     CppAD<font color="#990000">::</font>ADFun<font color="#990000">&lt;</font>Scalar<font color="#990000">&gt;&amp;</font>                              L_fun         <font color="#990000">,</font>
+     <font color="#008080">Scalar</font>                                             criteria      <font color="#990000">,</font>
+     <font color="#008080">size_t</font>                                             max_itr       <font color="#990000">,</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font>                        L_y           <font color="#990000">,</font>
+     CppAD<font color="#990000">::</font>sparse_jac_work<font color="#990000">&amp;</font>                            work          <font color="#990000">)</font></tt></pre>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+Let <small>@(@
+( x^0 , y^0 )
+@)@</small> denote the value of <small>@(@
+(x, y)
+@)@</small>
+in 
+<code><i><font color="black"><span style='white-space: nowrap'>xy_in</span></font></i></code>
+.
+Let <small>@(@
+y^k
+@)@</small> denote the value of <small>@(@
+y
+@)@</small>
+after 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i></code>
+ Newton steps (not its <code><i>k</i></code>-th order Taylor coefficient).
+The <code><i>k</i></code>-th Newton step is
+<small>@[@
+
+	y^k = y^{k-1} - L_y ( x^{k-1} , y^{k-1} )^{-1} L ( x^{k-1}, y^{k-1} )
+
+@]@</small>
+
+<br>
+<br>
+<b><big><a name="xy_in" id="xy_in">xy_in</a></big></b>
+<br>
+This vector has size 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+Its first 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i></code>
+ components specify 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+.
+The other components specify the initial value for 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+.
+It is the value of <small>@(@
+( x^0 , y^0 )
+@)@</small> for the first Newton step.
+
+<br>
+<br>
+<b><big><a name="xy_out" id="xy_out">xy_out</a></big></b>
+<br>
+This vector has size 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+Its first 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i></code>
+ components specify 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+.
+The other components specify the initial value for 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+.
+It is the value of <small>@(@
+( x^k , y^k )
+@)@</small> for the last Newton step.
+
+<br>
+<br>
+<b><big><a name="L_fun" id="L_fun">L_fun</a></big></b>
+<br>
+The operation sequence for the <a href="constraint.htm" target="_top"><span style='white-space: nowrap'>constraint</span></a>
+ function
+<small>@(@
+L : \B{R}^{2 J} \times \B{R}^{4 J} \rightarrow \B{R}^{4 J}
+@)@</small>
+is stored in 
+<code><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="criteria" id="criteria">criteria</a></big></b>
+<br>
+This is the convergence criteria in terms of the Euclidean norm squared.
+Convergence is accepted when <small>@(@
+| L(x, y) |^2
+@)@</small> is less than
+
+<code><i><font color="black"><span style='white-space: nowrap'>criteria</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="max_itr" id="max_itr">max_itr</a></big></b>
+<br>
+This is the maximum number of Newton steps to execute
+(which must be greater than zero).
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>criteria</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>xy_out</span></font></i></code>
+ will correspond to exactly 
+<code><i><font color="black"><span style='white-space: nowrap'>max_itr</span></font></i></code>
+ Newton steps.
+
+<br>
+<br>
+<b><big><a name="L_y" id="L_y">L_y</a></big></b>
+<br>
+This argument is the value of <small>@(@
+L_y (x, y)
+@)@</small> at the
+value of <small>@(@
+(x, y)
+@)@</small> corresponding to 
+<code><i><font color="black"><span style='white-space: nowrap'>xy_in</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="work" id="work">work</a></big></b>
+<br>
+This is a work vector used to reduce the work.
+It must correspond to 
+<code><i><font color="black"><span style='white-space: nowrap'>L_y</span></font></i></code>
+ and not be empty;
+see <a href="jac_constraint.htm" target="_top"><span style='white-space: nowrap'>jac_constraint</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="num_itr" id="num_itr">num_itr</a></big></b>
+<br>
+Is the number of Newton steps executed.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>num_itr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>max_itr</span></font></i></code>
+,
+the convergence criteria may not be satisfied.
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<pre><tt>
+<font color="#009900">bool</font> <b><font color="#000000">test_control_full_newton</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#009900">bool</font> ok <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+     <font color="#009900">double</font> eps99 <font color="#990000">=</font> <font color="#993399">99.0</font> <font color="#990000">*</font> std<font color="#990000">::</font>numeric_limits<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><b><font color="#000000">epsilon</font></b><font color="#990000">();</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// record L_fun</font></i>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;double&gt;</font>       L_fun<font color="#990000">;</font>
+     <font color="#008080">size_t</font>                     J <font color="#990000">=</font> <font color="#993399">10</font><font color="#990000">;</font>
+     <font color="#009900">double</font>                     delta_t <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">p</font></b><font color="#990000">(</font><font color="#993399">4</font><font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> <font color="#993399">4</font><font color="#990000">;</font> i<font color="#990000">++)</font>
+          p<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font>
+     control<font color="#990000">::</font><b><font color="#000000">rec_constraint</font></b><font color="#990000">(</font>L_fun<font color="#990000">,</font> J<font color="#990000">,</font> delta_t<font color="#990000">,</font> p<font color="#990000">);</font>
+     <font color="#008080">size_t</font> m      <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Range</font></b><font color="#990000">();</font>
+     <font color="#008080">size_t</font> n      <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Domain</font></b><font color="#990000">()</font> <font color="#990000">-</font> m<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// value of x and initial y</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">xy_in</font></b><font color="#990000">(</font>n <font color="#990000">+</font> m<font color="#990000">),</font> xy_out<font color="#990000">;</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> n<font color="#990000">+</font>m<font color="#990000">;</font> i<font color="#990000">++)</font>
+          xy_in<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <font color="#009900">double</font> criteria  <font color="#990000">=</font> <font color="#009900">double</font><font color="#990000">(</font>n <font color="#990000">+</font> m<font color="#990000">)</font> <font color="#990000">*</font> eps99<font color="#990000">;</font>
+     <font color="#008080">size_t</font> max_itr   <font color="#990000">=</font> <font color="#993399">10</font><font color="#990000">;</font>
+     <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font>    L_y<font color="#990000">;</font>
+     CppAD<font color="#990000">::</font><font color="#008080">sparse_jac_work</font>  work<font color="#990000">;</font>
+     <b><font color="#000000">jac_constraint</font></b><font color="#990000">(</font>L_y<font color="#990000">,</font> L_fun<font color="#990000">,</font> xy_in<font color="#990000">,</font> work<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <font color="#008080">size_t</font> num_itr <font color="#990000">=</font> control<font color="#990000">::</font><b><font color="#000000">full_newton</font></b><font color="#990000">(</font>
+          xy_out<font color="#990000">,</font> xy_in<font color="#990000">,</font> L_fun<font color="#990000">,</font> criteria<font color="#990000">,</font> max_itr<font color="#990000">,</font> L_y<font color="#990000">,</font> work
+     <font color="#990000">);</font>
+     <i><font color="#9A1900">// max sure it did not require maximum nunber of iterations</font></i>
+     ok <font color="#990000">&amp;=</font> num_itr <font color="#990000">&lt;</font> max_itr<font color="#990000">;</font>
+     <i><font color="#9A1900">// make sure xy has not gone to a huge value</font></i>
+     ok <font color="#990000">&amp;=</font> <b><font color="#000000">norm_squared</font></b><font color="#990000">(</font> xy_out <font color="#990000">)</font> <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">6</font> <font color="#990000">*</font> J<font color="#990000">)</font> <font color="#990000">&lt;</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     <i><font color="#9A1900">// check the convergence criteria</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> L <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font> xy_out<font color="#990000">);</font>
+     ok <font color="#990000">&amp;=</font> <b><font color="#000000">norm_squared</font></b><font color="#990000">(</font> L <font color="#990000">)</font> <font color="#990000">&lt;</font> criteria<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">return</font></b> ok<font color="#990000">;</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/control.hpp
+
+</body>
+</html>

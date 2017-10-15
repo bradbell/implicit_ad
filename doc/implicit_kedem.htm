@@ -1,0 +1,457 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Kedem Method for Derivatives of Implicit Functions</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Kedem Method for Derivatives of Implicit Functions">
+<meta name="keywords" id="keywords" content=" kedem method derivatives implicit functions syntax purpose l_fun f_fun solve solve.function solve.derivative solve.linear k xk store rk zero order higher orders example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_implicit_kedem_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="jac_constraint.htm" target="_top">Prev</a>
+</td><td><a href="test_circle_implicit_kedem.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>implicit_kedem</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>implicit_kedem-&gt;</option>
+<option>test_circle_implicit_kedem</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>L_fun</option>
+<option>F_fun</option>
+<option>solve</option>
+<option>---..solve.function</option>
+<option>---..solve.derivative</option>
+<option>---..solve.linear</option>
+<option>k</option>
+<option>xk</option>
+<option>store</option>
+<option>rk</option>
+<option>Method</option>
+<option>---..Zero Order</option>
+<option>---..Higher Orders</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Kedem Method for Derivatives of Implicit Functions</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>implicit_kedem&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>kedem_ad</span></font></i><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>kedem_ad</span></font></i><font color="blue"><span style='white-space: nowrap'>.Forward(</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>store</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+Given a function
+<small>@(@
+L : \B{R}^{n \times m} \rightarrow \B{R}^m
+@)@</small>,
+we define the implicit function
+<small>@(@
+Y : \B{R}^n \rightarrow \B{R}^m
+@)@</small> by
+<small>@(@
+L[ x , Y(x) ] = 0
+@)@</small>.
+The partial <small>@(@
+L_y [ x , Y(x) ]
+@)@</small>
+must be invertible for all <small>@(@
+x
+@)@</small> used by 
+<code><i><font color="black"><span style='white-space: nowrap'>kedem_ad</span></font></i></code>
+.
+We define the reduced function
+<small>@(@
+R(x) = F[ x , Y(x) ]
+@)@</small> where
+<small>@(@
+F : \B{R}^{n \times m} \rightarrow \B{R}^p
+@)@</small>.
+The object 
+<code><i><font color="black"><span style='white-space: nowrap'>kedem_ad</span></font></i></code>
+ can be used to compute
+derivatives of the reduced function <small>@(@
+R(x)
+@)@</small>.
+Note that in the special case where <small>@(@
+F(x, y) = y
+@)@</small>,
+<small>@(@
+R(x) = Y(x)
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="L_fun" id="L_fun">L_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;CppAD::ADFun&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to <small>@(@
+L(x, y)
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="F_fun" id="F_fun">F_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;CppAD::ADFun&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to <small>@(@
+F(x, y)
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="solve" id="solve">solve</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Solve</span></font></i><font color="blue"><span style='white-space: nowrap'>&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Solver</span></font></i></code>
+ must support the default constructor
+and the assignment operator.
+It must also support the following operations:
+
+<br>
+<br>
+<b><a name="solve.solve.function" id="solve.solve.function">solve.function</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.function(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the argument 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ and the return value 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The return value satisfies the relation <small>@(@
+L(x, y) = 0
+@)@</small>.
+
+<br>
+<br>
+<b><a name="solve.solve.derivative" id="solve.solve.derivative">solve.derivative</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.derivative(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the arguments have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The return value has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+This returns the value of <small>@(@
+L_y (x, y)
+@)@</small> for subsequent
+calls to 
+<code><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear</span></font></code>
+.
+Only the elements of <small>@(@
+L_y (x, y)
+@)@</small> that depend on <small>@(@
+(x, y)
+@)@</small>
+need be included in the vector <small>@(@
+b
+@)@</small>.
+
+<br>
+<br>
+<b><a name="solve.solve.linear" id="solve.solve.linear">solve.linear</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear(</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the arguments 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>v</span></font></i></code>
+ and the return value
+
+<code><i><font color="black"><span style='white-space: nowrap'>u</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where both vectors have size 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The return value satisfies the equation
+<small>@[@
+
+	u = L_y (x, y)^{-1} v
+
+@]@</small>
+where <small>@(@
+L_y (x, y)
+@)@</small> corresponds to 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="k" id="k">k</a></big></b>
+<br>
+This is the order for this forward mode calculation and has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Note that computing the <code><i>k</i></code>-th order, uses the results of the
+previous lower order calculations which are internally stored
+in the function objects.
+
+<br>
+<br>
+<b><big><a name="xk" id="xk">xk</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i></code>
+ has prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+ and it is the <code><i>k</i></code>-th order Taylor coefficient
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+.
+The results of the calculation are stored internally and used
+during higher order forward mode calculations.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&gt;&nbsp;0</span></font></code>
+,
+there must have been a previous call to <code><font color="blue">forward</font></code> for
+order 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1</span></font></code>
+.
+
+<br>
+<br>
+<b><big><a name="store" id="store">store</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>store</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+If it is true, the results of this forward mode calculation is store
+so that a future forward mode calculation of order 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>+1</span></font></code>
+ is possible.
+This requires an extra pass over the operation sequence for
+<a href="implicit_kedem.htm#L_fun" target="_top"><span style='white-space: nowrap'>L_fun</span></a>
+.
+Hence 
+<code><i><font color="black"><span style='white-space: nowrap'>store</span></font></i></code>
+ should be false when a higher order calculation
+will not be needed.
+
+<br>
+<br>
+<b><big><a name="rk" id="rk">rk</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+ and it is the <code><i>k</i></code>-th order Taylor coefficient
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>R(x)</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="Method" id="Method">Method</a></big></b>
+<br>
+Fix <small>@(@
+x : \B{R} \rightarrow \B{R}^n
+@)@</small> and define
+<small>@(@
+y : \B{R} \rightarrow \B{R}^m
+@)@</small> by
+<small>@(@
+x(t) = Y( x(t) )
+@)@</small>.
+The <code><i>k</i></code>-th order Taylor coefficients are
+<small>@(@
+x^k = x^{(k)} (0) / k !
+@)@</small> and
+<small>@(@
+y^k = y^{(k)} (0) / k !
+@)@</small>.
+
+<br>
+<br>
+<b><a name="Method.Zero Order" id="Method.Zero Order">Zero Order</a></b>
+<br>
+The zero order coefficient <small>@(@
+y^0
+@)@</small> is found using
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y0</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.function(</span></font><i><font color="black"><span style='white-space: nowrap'>x0</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><a name="Method.Higher Orders" id="Method.Higher Orders">Higher Orders</a></b>
+<br>
+It follows from the definitions that
+<small>@[@
+
+	0 = L_x ( x^0 , y^0 ) x^{(1)} (t) + L_y ( x^0 , y^0 ) y^{(1)} (t)
+
+@]@</small>
+Taking more derivatives we see that, for <small>@(@
+k \geq 1
+@)@</small>,
+<small>@[@
+
+0 = H_k ( x^0 , \cdots , x^k , y^0 , \cdots , y^{k-1} ) + L_y ( x^0 , y^0 ) y^k
+
+@]@</small>
+We use <code><i>k</i></code>-th order forward mode on 
+<code><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i></code>
+,
+with <small>@(@
+y^k = 0
+@)@</small>, to determine
+<small>@[@
+
+	z^k = H_k ( x^0 , \cdots , x^k , y^0 , \cdots , y^{k-1} )
+
+@]@</small>
+We then solve the equation
+<small>@[@
+
+	0 = z^k + L_y ( x^0 , y^0 ) y^k
+
+@]@</small>
+to determine the proper value for <small>@(@
+y^k
+@)@</small>.
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br>
+The routine <a href="test_circle_implicit_kedem.htm" target="_top"><span style='white-space: nowrap'>test_circle_implicit_kedem</span></a>
+ is a simple example
+and test using this class.
+The routine <a href="test_control_reduced_objective.htm" target="_top"><span style='white-space: nowrap'>test_control_reduced_objective</span></a>
+ is a control problem
+example and test using this class.
+
+
+<hr>Input File: src/implicit_kedem.hpp
+
+</body>
+</html>

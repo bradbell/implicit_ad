@@ -1,0 +1,236 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Repeated Computation of Control Problem Hessian Using Newton Method</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Repeated Computation of Control Problem Hessian Using Newton Method">
+<meta name="keywords" id="keywords" content=" repeated computation control problem hessian using newton method syntax repeat j full_step x hess size ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_repeat_newton_hessian_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="repeat_kedem_hessian.htm" target="_top">Prev</a>
+</td><td><a href="_reference.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>time</option>
+<option>repeat_newton_hessian</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>time-&gt;</option>
+<option>set_T_p_and_q</option>
+<option>repeat_kedem_gradient</option>
+<option>repeat_newton_gradient</option>
+<option>repeat_kedem_hessian</option>
+<option>repeat_newton_hessian</option>
+</select>
+</td>
+<td>repeat_newton_hessian</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>repeat</option>
+<option>J</option>
+<option>full_step</option>
+<option>x</option>
+<option>hess</option>
+<option>size</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Repeated Computation of Control Problem Hessian Using Newton Method</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>repeat_kedem_hessian(</span></font><i><font color="black"><span style='white-space: nowrap'>repeat</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>full_step</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>hess</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>repeat_partial_hessian(</span></font><i><font color="black"><span style='white-space: nowrap'>repeat</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>size</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>repeat_full_hessian(</span></font><i><font color="black"><span style='white-space: nowrap'>repeat</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>size</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><big><a name="repeat" id="repeat">repeat</a></big></b>
+<br>
+is the number of times to choose a new value for the controls.
+
+<br>
+<br>
+<b><big><a name="J" id="J">J</a></big></b>
+<br>
+is the number of time points in the discrete version of the control problem.
+
+<br>
+<br>
+<b><big><a name="full_step" id="full_step">full_step</a></big></b>
+<br>
+If this is true, the full Newton step is used to compute the Hessian.
+Otherwise, the partial Newton step mode is used.
+
+<br>
+<br>
+<b><big><a name="x" id="x">x</a></big></b>
+<br>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ has size zero, it is not used.
+Otherwise, it must have size 
+<code><font color="blue"><span style='white-space: nowrap'>2*</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i></code>
+.
+In this case it specifies the value of the control vector for the
+first Hessian computation.
+
+<br>
+<br>
+<b><big><a name="hess" id="hess">hess</a></big></b>
+<br>
+This vector must have size 
+<code><font color="blue"><span style='white-space: nowrap'>4*</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i><font color="blue"><span style='white-space: nowrap'>*</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i></code>
+.
+The input value of its elements does not matter.
+Upon return, it contains the value last Hessian computed
+by <code><font color="blue">repeat_newton_hessian</font></code>.
+
+<br>
+<br>
+<b><big><a name="size" id="size">size</a></big></b>
+<br>
+This is the number time points in the problem; i.e.,
+the value of 
+<code><i><font color="black"><span style='white-space: nowrap'>J</span></font></i></code>
+ for this test.
+
+<pre><tt><font color="#009900">void</font> <b><font color="#000000">repeat_newton_hessian</font></b><font color="#990000">(</font>
+     <font color="#008080">size_t</font>                repeat     <font color="#990000">,</font>
+     <font color="#008080">size_t</font>                J          <font color="#990000">,</font>
+     <font color="#009900">bool</font>                  full_step     <font color="#990000">,</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)&amp;</font> x          <font color="#990000">,</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)&amp;</font>       hess       <font color="#990000">)</font>
+<font color="#FF0000">{</font>    <b><font color="#000000">assert</font></b><font color="#990000">(</font> x<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">||</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> x<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">);</font>
+     <b><font color="#000000">assert</font></b><font color="#990000">(</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> hess<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">)</font> <font color="#990000">==</font> <font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">*</font> <font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">);</font>
+     <font color="#009900">double</font> eps99 <font color="#990000">=</font> <font color="#993399">99.0</font> <font color="#990000">*</font> std<font color="#990000">::</font>numeric_limits<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><b><font color="#000000">epsilon</font></b><font color="#990000">();</font>
+     <b><font color="#0000FF">typedef</font></b> CppAD<font color="#990000">::</font><font color="#008080">AD&lt;double&gt;</font> adouble<font color="#990000">;</font>
+     <i><font color="#9A1900">// ----------------------------------------------------------------------</font></i>
+     <i><font color="#9A1900">// control problem parameters</font></i>
+     <font color="#009900">double</font> T<font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">p</font></b><font color="#990000">(</font><font color="#993399">4</font><font color="#990000">),</font> <b><font color="#000000">q</font></b><font color="#990000">(</font><font color="#993399">4</font><font color="#990000">);</font>
+     <b><font color="#000000">set_T_p_and_q</font></b><font color="#990000">(</font>T<font color="#990000">,</font> p<font color="#990000">,</font> q<font color="#990000">);</font>
+     <font color="#009900">double</font> delta_t <font color="#990000">=</font> T <font color="#990000">/</font> <font color="#009900">double</font><font color="#990000">(</font>J <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">);</font>
+     <i><font color="#9A1900">// ----------------------------------------------------------------------</font></i>
+     <i><font color="#9A1900">// L_fun, F_fun</font></i>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;double&gt;</font> F_fun<font color="#990000">,</font> L_fun<font color="#990000">;</font>
+     control<font color="#990000">::</font><b><font color="#000000">rec_objective</font></b><font color="#990000">(</font>F_fun<font color="#990000">,</font> J<font color="#990000">,</font>  delta_t<font color="#990000">,</font> q<font color="#990000">);</font>
+     control<font color="#990000">::</font><b><font color="#000000">rec_constraint</font></b><font color="#990000">(</font>L_fun<font color="#990000">,</font> J<font color="#990000">,</font> delta_t<font color="#990000">,</font> p<font color="#990000">);</font>
+     <font color="#008080">size_t</font> m <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Range</font></b><font color="#990000">();</font>
+     <font color="#008080">size_t</font> n <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Domain</font></b><font color="#990000">()</font> <font color="#990000">-</font> m<font color="#990000">;</font>
+     <b><font color="#000000">assert</font></b><font color="#990000">(</font> F_fun<font color="#990000">.</font><b><font color="#000000">Range</font></b><font color="#990000">()</font> <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">);</font>
+     <b><font color="#000000">assert</font></b><font color="#990000">(</font> F_fun<font color="#990000">.</font><b><font color="#000000">Domain</font></b><font color="#990000">()</font> <font color="#990000">==</font> n <font color="#990000">+</font> m <font color="#990000">);</font>
+     <i><font color="#9A1900">// -----------------------------------------------------------------------</font></i>
+     <i><font color="#9A1900">// aL_fun</font></i>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;adouble&gt;</font> aL_fun<font color="#990000">;</font>
+     <font color="#008080">adouble</font> adelta_t <font color="#990000">=</font> delta_t<font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>adouble<font color="#990000">)</font> <b><font color="#000000">ap</font></b><font color="#990000">(</font><font color="#993399">4</font><font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> <font color="#993399">4</font><font color="#990000">;</font> i<font color="#990000">++)</font>
+          ap<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> p<font color="#990000">[</font>i<font color="#990000">];</font>
+     control<font color="#990000">::</font><b><font color="#000000">rec_constraint</font></b><font color="#990000">(</font>aL_fun<font color="#990000">,</font> J<font color="#990000">,</font> adelta_t<font color="#990000">,</font> ap<font color="#990000">);</font>
+     <i><font color="#9A1900">// -----------------------------------------------------------------------</font></i>
+     <i><font color="#9A1900">// control_solve</font></i>
+     <font color="#009900">double</font> criteria <font color="#990000">=</font> <font color="#009900">double</font><font color="#990000">(</font>n <font color="#990000">+</font> m<font color="#990000">)</font> <font color="#990000">*</font> eps99<font color="#990000">;</font>
+     control<font color="#990000">::</font><font color="#008080">implicit_solver</font> <b><font color="#000000">control_solve</font></b><font color="#990000">(</font>L_fun<font color="#990000">,</font> aL_fun<font color="#990000">,</font> criteria<font color="#990000">);</font>
+     <i><font color="#9A1900">// -----------------------------------------------------------------------</font></i>
+     <i><font color="#9A1900">// R_newton</font></i>
+     <font color="#008080">size_t</font> num_step <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
+     <font color="#008080">implicit_newton&lt;control::implicit_solver&gt;</font> <b><font color="#000000">R_newton</font></b><font color="#990000">(</font>
+          full_step<font color="#990000">,</font> num_step<font color="#990000">,</font> aL_fun<font color="#990000">,</font> F_fun<font color="#990000">,</font> control_solve
+     <font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">x0</font></b><font color="#990000">(</font>n<font color="#990000">),</font> <b><font color="#000000">x1</font></b><font color="#990000">(</font>n<font color="#990000">),</font> <b><font color="#000000">w</font></b><font color="#990000">(</font><font color="#993399">2</font><font color="#990000">),</font> <b><font color="#000000">dRR</font></b><font color="#990000">(</font><font color="#993399">2</font> <font color="#990000">*</font> n<font color="#990000">);</font>
+     w<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+     w<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> n<font color="#990000">;</font> i<font color="#990000">++)</font>
+          x1<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+     <b><font color="#0000FF">if</font></b><font color="#990000">(</font> x<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">==</font> <font color="#993399">0</font> <font color="#990000">)</font>
+          CppAD<font color="#990000">::</font><b><font color="#000000">uniform_01</font></b><font color="#990000">(</font>n<font color="#990000">,</font> x0<font color="#990000">);</font>
+     <b><font color="#0000FF">else</font></b>
+          x0 <font color="#990000">=</font> x<font color="#990000">;</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> count <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> count <font color="#990000">&lt;</font> repeat<font color="#990000">;</font> count<font color="#990000">++)</font>
+     <font color="#FF0000">{</font>    <i><font color="#9A1900">// zero order forward</font></i>
+          R_newton<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font> x0<font color="#990000">);</font>
+          <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> n<font color="#990000">;</font> i<font color="#990000">++)</font>
+          <font color="#FF0000">{</font>    x1<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+               R_newton<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">,</font> x1<font color="#990000">);</font>
+               dRR <font color="#990000">=</font> R_newton<font color="#990000">.</font><b><font color="#000000">Reverse</font></b><font color="#990000">(</font><font color="#993399">2</font><font color="#990000">,</font> w<font color="#990000">);</font>
+               <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> n<font color="#990000">;</font> j<font color="#990000">++)</font>
+                    hess<font color="#990000">[</font>i <font color="#990000">*</font> n <font color="#990000">+</font> j<font color="#990000">]</font> <font color="#990000">=</font> dRR<font color="#990000">[</font><font color="#993399">2</font> <font color="#990000">*</font> j <font color="#990000">+</font> <font color="#993399">0</font><font color="#990000">];</font>
+               x1<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+          <font color="#FF0000">}</font>
+          <i><font color="#9A1900">// pick a random value for next x0</font></i>
+          CppAD<font color="#990000">::</font><b><font color="#000000">uniform_01</font></b><font color="#990000">(</font>n<font color="#990000">,</font> x0<font color="#990000">);</font>
+     <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+<font color="#009900">void</font> <b><font color="#000000">time_partial_hessian</font></b><font color="#990000">(</font><font color="#008080">size_t</font> size<font color="#990000">,</font> <font color="#008080">size_t</font> repeat<font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#008080">size_t</font> J <font color="#990000">=</font> size<font color="#990000">;</font>
+     <font color="#008080">size_t</font> full_step <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">hess</font></b><font color="#990000">(</font><font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">*</font> <font color="#993399">2</font> <font color="#990000">*</font> J<font color="#990000">),</font> <b><font color="#000000">x</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
+     <b><font color="#000000">repeat_newton_hessian</font></b><font color="#990000">(</font>repeat<font color="#990000">,</font> J<font color="#990000">,</font> full_step<font color="#990000">,</font> x<font color="#990000">,</font> hess<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+<font color="#009900">void</font> <b><font color="#000000">time_full_hessian</font></b><font color="#990000">(</font><font color="#008080">size_t</font> size<font color="#990000">,</font> <font color="#008080">size_t</font> repeat<font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#008080">size_t</font> J <font color="#990000">=</font> size<font color="#990000">;</font>
+     <font color="#008080">size_t</font> full_step <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">hess</font></b><font color="#990000">(</font><font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">*</font> <font color="#993399">2</font> <font color="#990000">*</font> J<font color="#990000">),</font> <b><font color="#000000">x</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
+     <b><font color="#000000">repeat_newton_hessian</font></b><font color="#990000">(</font>repeat<font color="#990000">,</font> J<font color="#990000">,</font> full_step<font color="#990000">,</font> x<font color="#990000">,</font> hess<font color="#990000">);</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/time.cpp
+
+</body>
+</html>

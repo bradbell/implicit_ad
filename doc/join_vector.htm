@@ -1,0 +1,94 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Join Two Vectors</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Join Two Vectors">
+<meta name="keywords" id="keywords" content=" join two vectors ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_join_vector_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="norm_squared.htm" target="_top">Prev</a>
+</td><td><a href="sparse_cppad2eigen.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>utility</option>
+<option>join_vector</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>utility-&gt;</option>
+<option>notation</option>
+<option>norm_squared</option>
+<option>join_vector</option>
+<option>sparse_cppad2eigen</option>
+<option>solve_lower_cppad</option>
+<option>jac_constraint</option>
+</select>
+</td>
+<td>join_vector</td>
+<td>Headings</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Join Two Vectors</big></big></b></center>
+The file <code><font color="blue">utility.hpp</font></code> includes the following function:
+
+<pre><tt><b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Scalar</font><font color="#990000">&gt;</font> <font color="#009900">void</font> <b><font color="#000000">join_vector</font></b><font color="#990000">(</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> xy<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> x<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> y
+<font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#008080">size_t</font> n <font color="#990000">=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> x<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <font color="#008080">size_t</font> m <font color="#990000">=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> y<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> n<font color="#990000">;</font> i<font color="#990000">++)</font>
+          xy<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> x<font color="#990000">[</font>i<font color="#990000">];</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> m<font color="#990000">;</font> i<font color="#990000">++)</font>
+          xy<font color="#990000">[</font>n <font color="#990000">+</font> i<font color="#990000">]</font> <font color="#990000">=</font> y<font color="#990000">[</font>i<font color="#990000">];</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/utility.hpp
+
+</body>
+</html>

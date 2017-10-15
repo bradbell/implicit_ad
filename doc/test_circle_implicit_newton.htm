@@ -1,0 +1,197 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Example / Test of Implicit Newton Class</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Example / Test of Implicit Newton Class">
+<meta name="keywords" id="keywords" content=" example / test implicit newton class ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_test_circle_implicit_newton_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="implicit_newton.htm" target="_top">Prev</a>
+</td><td><a href="control.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>implicit_newton</option>
+<option>test_circle_implicit_newton</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>implicit_newton-&gt;</option>
+<option>test_circle_implicit_newton</option>
+</select>
+</td>
+<td>test_circle_implicit_newton</td>
+<td>Headings</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@
+
+<center><b><big><big>Example / Test of Implicit Newton Class</big></big></b></center>
+<pre><tt><i><font color="#9A1900">//</font></i>
+<i><font color="#9A1900">// simple implicit function y(x) defined by</font></i>
+<i><font color="#9A1900">// 0 = L(x, y) = x^2  + y(x)^2  - 1</font></i>
+<i><font color="#9A1900">//</font></i>
+<b><font color="#0000FF">class</font></b> <font color="#008080">newton_circle</font> <font color="#FF0000">{</font>
+<b><font color="#0000FF">public</font></b><font color="#990000">:</font>
+     <b><font color="#000000">newton_circle</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+     <font color="#FF0000">{</font> <font color="#FF0000">}</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">function</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)&amp;</font> x<font color="#990000">)</font>
+     <font color="#FF0000">{</font>    <b><font color="#000000">assert</font></b><font color="#990000">(</font> x<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">);</font>
+          <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">y</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+          y<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font> <font color="#993399">1.0</font> <font color="#990000">-</font> x<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">*</font> x<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">);</font>
+          <b><font color="#0000FF">return</font></b> y<font color="#990000">;</font>
+     <font color="#FF0000">}</font>
+     <b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Scalar</font><font color="#990000">&gt;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font> <b><font color="#000000">derivative</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> x<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> y<font color="#990000">)</font>
+     <font color="#FF0000">{</font>    <i><font color="#9A1900">// b = L_y (x, y)</font></i>
+          <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font> <b><font color="#000000">b</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+          b<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">2.0</font> <font color="#990000">*</font> y<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">];</font>
+          <b><font color="#0000FF">return</font></b> b<font color="#990000">;</font>
+     <font color="#FF0000">}</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font> CppAD<font color="#990000">::</font>AD<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;</font> <font color="#990000">)</font> <b><font color="#000000">linear</font></b><font color="#990000">(</font>
+          <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font> CppAD<font color="#990000">::</font>AD<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;)&amp;</font>   b <font color="#990000">,</font>
+          <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font> CppAD<font color="#990000">::</font>AD<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;)&amp;</font>   v <font color="#990000">)</font>
+     <font color="#FF0000">{</font>    <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font> CppAD<font color="#990000">::</font>AD<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;</font> <font color="#990000">)</font> <b><font color="#000000">u</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+          <b><font color="#000000">assert</font></b><font color="#990000">(</font> v<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">==</font> <font color="#993399">1</font> <font color="#990000">);</font>
+          u<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> v<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">/</font> b<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">];</font>
+          <b><font color="#0000FF">return</font></b> u<font color="#990000">;</font>
+     <font color="#FF0000">}</font>
+<font color="#FF0000">}</font><font color="#990000">;</font>
+<font color="#009900">bool</font> <b><font color="#000000">test_cricle_implicit_newton</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#009900">bool</font> ok <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+     <font color="#009900">double</font> eps99 <font color="#990000">=</font> <font color="#993399">99.0</font> <font color="#990000">*</font> std<font color="#990000">::</font>numeric_limits<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><b><font color="#000000">epsilon</font></b><font color="#990000">();</font>
+     <b><font color="#0000FF">typedef</font></b> CppAD<font color="#990000">::</font><font color="#008080">AD&lt;double&gt;</font>   adouble<font color="#990000">;</font>
+     <b><font color="#0000FF">typedef</font></b> CppAD<font color="#990000">::</font><font color="#008080">AD&lt;adouble&gt;</font> a2double<font color="#990000">;</font>
+
+     <i><font color="#9A1900">// record z = L(x, y)</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>a2double<font color="#990000">)</font> <b><font color="#000000">a2xy</font></b><font color="#990000">(</font><font color="#993399">2</font><font color="#990000">),</font> <b><font color="#000000">a2z</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+     a2xy<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">a2double</font></b><font color="#990000">(</font> <font color="#993399">0.5</font> <font color="#990000">);</font>
+     a2xy<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">a2double</font></b><font color="#990000">(</font> <font color="#993399">0.5</font> <font color="#990000">);</font>
+     CppAD<font color="#990000">::</font><b><font color="#000000">Independent</font></b><font color="#990000">(</font> a2xy <font color="#990000">);</font>
+     a2z<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> a2xy<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">*</font> a2xy<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">+</font> a2xy<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">*</font> a2xy<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">-</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;adouble&gt;</font> <b><font color="#000000">aL_fun</font></b><font color="#990000">(</font>a2xy<font color="#990000">,</font> a2z<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// record F(x, y) = y</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>adouble<font color="#990000">)</font> <b><font color="#000000">axy</font></b><font color="#990000">(</font><font color="#993399">2</font><font color="#990000">),</font> <b><font color="#000000">az</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+     axy<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">adouble</font></b><font color="#990000">(</font> <font color="#993399">0.5</font> <font color="#990000">);</font>
+     axy<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">adouble</font></b><font color="#990000">(</font> <font color="#993399">0.5</font> <font color="#990000">);</font>
+     CppAD<font color="#990000">::</font><b><font color="#000000">Independent</font></b><font color="#990000">(</font> axy <font color="#990000">);</font>
+     az<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> axy<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">];</font>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;double&gt;</font> <b><font color="#000000">F_fun</font></b><font color="#990000">(</font>axy<font color="#990000">,</font> az<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// solver used by newton_ad object</font></i>
+     <font color="#008080">newton_circle</font> solve<font color="#990000">;</font>
+
+     <i><font color="#9A1900">// create implicit function object</font></i>
+     <font color="#009900">bool</font>  full_step <font color="#990000">=</font> <b><font color="#0000FF">false</font></b><font color="#990000">;</font>
+     <font color="#008080">size_t</font> num_step <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
+     <font color="#008080">implicit_newton&lt;newton_circle&gt;</font> <b><font color="#000000">newton_ad</font></b><font color="#990000">(</font>
+          full_step<font color="#990000">,</font> num_step<font color="#990000">,</font> aL_fun<font color="#990000">,</font> F_fun<font color="#990000">,</font> solve
+     <font color="#990000">);</font>
+
+     <i><font color="#9A1900">// Taylor coefficient vectors</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">xk</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">),</font> <b><font color="#000000">yk</font></b><font color="#990000">(</font><font color="#993399">1</font><font color="#990000">);</font>
+
+     <i><font color="#9A1900">// zero order, y(t) = sqrt(1 - x(t) * x(t) )</font></i>
+     <font color="#008080">size_t</font> k  <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+     <font color="#009900">double</font> x0 <font color="#990000">=</font> <font color="#993399">0.5</font><font color="#990000">;</font>
+     xk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font>     <font color="#990000">=</font> x0<font color="#990000">;</font>
+     yk        <font color="#990000">=</font> newton_ad<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font>k<font color="#990000">,</font> xk<font color="#990000">);</font>
+     <font color="#009900">double</font> y0 <font color="#990000">=</font> <b><font color="#000000">sqrt</font></b><font color="#990000">(</font><font color="#993399">1.0</font> <font color="#990000">-</font> x0 <font color="#990000">*</font> x0<font color="#990000">);</font>
+     ok       <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>yk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> y0<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// differentiate zero order forward</font></i>
+     <i><font color="#9A1900">// y0 = sqrt( 1.0 - x0 * x0 )</font></i>
+     <font color="#008080">size_t</font> q        <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">w</font></b><font color="#990000">(</font>q<font color="#990000">),</font> <b><font color="#000000">dw</font></b><font color="#990000">(</font>q<font color="#990000">);</font>
+     w<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font>            <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     dw              <font color="#990000">=</font> newton_ad<font color="#990000">.</font><b><font color="#000000">Reverse</font></b><font color="#990000">(</font>q<font color="#990000">,</font> w<font color="#990000">);</font>
+     <font color="#009900">double</font> dy0_dx0  <font color="#990000">=</font> <font color="#990000">-</font> x0 <font color="#990000">/</font> y0<font color="#990000">;</font>
+     ok             <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>dw<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> dy0_dx0<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// first order, y'(t) = - x(t) * x'(t) / sqrt(r0 - x(t) * x(t) )</font></i>
+     k         <font color="#990000">=</font> <font color="#993399">1</font><font color="#990000">;</font>
+     <font color="#009900">double</font> x1 <font color="#990000">=</font> <font color="#993399">0.75</font><font color="#990000">;</font>
+     xk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font>     <font color="#990000">=</font> x1<font color="#990000">;</font>
+     yk        <font color="#990000">=</font> newton_ad<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font>k<font color="#990000">,</font> xk<font color="#990000">);</font>
+     <font color="#009900">double</font> y1 <font color="#990000">=</font> <font color="#990000">-</font> x0 <font color="#990000">*</font> x1 <font color="#990000">/</font> y0<font color="#990000">;</font>
+     ok       <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>yk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> y1<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// differentiate first order forward</font></i>
+     <i><font color="#9A1900">// y1(x0, x1) = - x0 * x1 / y0</font></i>
+     q               <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
+     w<font color="#990000">.</font><b><font color="#000000">resize</font></b><font color="#990000">(</font>q<font color="#990000">);</font>
+     dw<font color="#990000">.</font><b><font color="#000000">resize</font></b><font color="#990000">(</font>q<font color="#990000">);</font>
+     w<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font>            <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+     w<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font>            <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     dw              <font color="#990000">=</font> newton_ad<font color="#990000">.</font><b><font color="#000000">Reverse</font></b><font color="#990000">(</font>q<font color="#990000">,</font> w<font color="#990000">);</font>
+     <font color="#009900">double</font> dy1_dx1  <font color="#990000">=</font> <font color="#990000">-</font> x0 <font color="#990000">/</font> y0<font color="#990000">;</font>
+     ok           <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>dw<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">],</font> dy1_dx1<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+     <font color="#009900">double</font> dy1_dx0  <font color="#990000">=</font> <font color="#990000">-</font> x1 <font color="#990000">/</font> y0 <font color="#990000">+</font> <font color="#990000">(</font> x0 <font color="#990000">*</font> x1 <font color="#990000">/</font> <font color="#990000">(</font>y0 <font color="#990000">*</font> y0<font color="#990000">)</font> <font color="#990000">)</font> <font color="#990000">*</font> dy0_dx0<font color="#990000">;</font>
+     ok           <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>dw<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> dy1_dx0<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+
+     <i><font color="#9A1900">// second order</font></i>
+     <i><font color="#9A1900">// y''(t) = - x'(t) * x'(t) / sqrt(r0 - x(t) * x(t) )</font></i>
+     <i><font color="#9A1900">//          - x(t) * x''(t) / sqrt(r0 - x(t) * x(t) )</font></i>
+     <i><font color="#9A1900">//          - (x(t) * x'(t))^2  / sqrt(r0 - x(t) * x(t) )^3</font></i>
+     k         <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
+     <font color="#009900">double</font> x2 <font color="#990000">=</font> <font color="#993399">0.25</font><font color="#990000">;</font>
+     xk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font>     <font color="#990000">=</font> x2<font color="#990000">;</font>
+     yk        <font color="#990000">=</font> newton_ad<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font>k<font color="#990000">,</font> xk<font color="#990000">);</font>
+     <font color="#009900">double</font> y2 <font color="#990000">=</font> <font color="#990000">-</font> x1 <font color="#990000">*</font> x1 <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> y0<font color="#990000">);</font>
+     y2       <font color="#990000">-=</font> x0 <font color="#990000">*</font> x2 <font color="#990000">/</font> y0<font color="#990000">;</font>
+     y2       <font color="#990000">-=</font> <font color="#990000">(</font>x0 <font color="#990000">*</font> x1<font color="#990000">)</font> <font color="#990000">*</font> <font color="#990000">(</font>x0 <font color="#990000">*</font> x1<font color="#990000">)</font> <font color="#990000">/</font> <font color="#990000">(</font><font color="#993399">2.0</font> <font color="#990000">*</font> y0 <font color="#990000">*</font> y0 <font color="#990000">*</font> y0<font color="#990000">);</font>
+     ok       <font color="#990000">&amp;=</font> CppAD<font color="#990000">::</font><b><font color="#000000">NearEqual</font></b><font color="#990000">(</font>yk<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> y2<font color="#990000">,</font> eps99<font color="#990000">,</font> eps99<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">return</font></b> ok<font color="#990000">;</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/implicit_newton.cpp
+
+</body>
+</html>

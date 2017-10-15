@@ -1,0 +1,477 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Newton Step Method for Derivatives of Implicit Functions</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Newton Step Method for Derivatives of Implicit Functions">
+<meta name="keywords" id="keywords" content=" newton step method derivatives implicit functions syntax purpose full_step num_step al_fun f_fun solve solve.function solve.derivative solve.linear k xk rk q w dw example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_implicit_newton_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="test_circle_implicit_kedem.htm" target="_top">Prev</a>
+</td><td><a href="test_circle_implicit_newton.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>implicit_newton</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>implicit_newton-&gt;</option>
+<option>test_circle_implicit_newton</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>full_step</option>
+<option>num_step</option>
+<option>aL_fun</option>
+<option>F_fun</option>
+<option>solve</option>
+<option>---..solve.function</option>
+<option>---..solve.derivative</option>
+<option>---..solve.linear</option>
+<option>k</option>
+<option>xk</option>
+<option>rk</option>
+<option>q</option>
+<option>w</option>
+<option>dw</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Newton Step Method for Derivatives of Implicit Functions</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>implicit_newton&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>newton_ad</span></font></i><font color="blue"><span style='white-space: nowrap'>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>full_step</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>num_step</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+)<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>newton_ad</span></font></i><font color="blue"><span style='white-space: nowrap'>.Forward(</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>dw</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>newton_ad</span></font></i><font color="blue"><span style='white-space: nowrap'>.Reverse(</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>w</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+Given a function
+<small>@(@
+L : \B{R}^{n \times m} \rightarrow \B{R}^m
+@)@</small>,
+we define the implicit function
+<small>@(@
+Y : \B{R}^n \rightarrow \B{R}^m
+@)@</small> by
+<small>@(@
+L[ x , Y(x) ] = 0
+@)@</small>.
+The partial <small>@(@
+L_y [ x , Y(x) ]
+@)@</small>
+is assumed to be invertible for all <small>@(@
+x
+@)@</small>.
+We define the reduced function
+<small>@(@
+R(x) = F[ x , Y(x) ]
+@)@</small> where
+<small>@(@
+F : \B{R}^{n \times m} \rightarrow \B{R}^p
+@)@</small>.
+The object 
+<code><i><font color="black"><span style='white-space: nowrap'>newton_ad</span></font></i></code>
+ can be used to compute
+derivatives of the reduced function <small>@(@
+R(x)
+@)@</small>.
+Note that in the special case where <small>@(@
+F(x, y) = y
+@)@</small>,
+<small>@(@
+R(x) = Y(x)
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="full_step" id="full_step">full_step</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>full_step</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+If it is true, full Newton steps are used.
+If it is false, partial Newton steps are used.
+
+<br>
+<br>
+<b><big><a name="num_step" id="num_step">num_step</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>num_step</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is the number of Newton steps in the method.
+
+<br>
+<br>
+<b><big><a name="aL_fun" id="aL_fun">aL_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CppAD::ADFun&lt;&nbsp;CppAD::AD&lt;double&gt;&nbsp;&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to <small>@(@
+L(x, y)
+@)@</small>.
+Note that a <code><font color="blue">CppAD::ADFun&lt;double&gt;</font></code> object could be used
+for the partial Newton step method.
+Note that this function is not <code><font color="blue">const</font></code> because
+its forward mode is used for calculations.
+Upon return,
+there are no forward mode coefficient left in 
+<code><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="F_fun" id="F_fun">F_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;CppAD::ADFun&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to <small>@(@
+F(x, y)
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="solve" id="solve">solve</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Solve</span></font></i><font color="blue"><span style='white-space: nowrap'>&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Solver</span></font></i></code>
+ must support the default constructor
+and the assignment operator.
+It must also support the following operations:
+
+<br>
+<br>
+<b><a name="solve.solve.function" id="solve.solve.function">solve.function</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.function(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the argument 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ and the return value 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The return value satisfies the relation <small>@(@
+L(x, y) = 0
+@)@</small>.
+
+<br>
+<br>
+<b><a name="solve.solve.derivative" id="solve.solve.derivative">solve.derivative</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.derivative(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the arguments have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The return value has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+This returns the value of <small>@(@
+L_y (x, y)
+@)@</small> for subsequent
+calls to 
+<code><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear</span></font></code>
+.
+Only the elements of <small>@(@
+L_y (x, y)
+@)@</small> that depend on <small>@(@
+(x, y)
+@)@</small>
+need be included in the vector <small>@(@
+b
+@)@</small>.
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i></code>
+ is either <code><font color="blue">double</font></code> or <code><font color="blue">CppAD::AD&lt;double&gt;</font></code>.
+
+<br>
+<br>
+<b><a name="solve.solve.linear" id="solve.solve.linear">solve.linear</a></b>
+<br>
+In the syntax
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear(</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+the arguments 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>v</span></font></i></code>
+ and the return value
+
+<code><i><font color="black"><span style='white-space: nowrap'>u</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(CppAD::AD&lt;double&gt;)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(CppAD::AD&lt;double&gt;)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(CppAD::AD&lt;double&gt;)&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where both vectors have size 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(CppAD::AD&lt;double&gt;)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The return value satisfies the equation
+<small>@[@
+
+	u = L_y (x, y)^{-1} v
+
+@]@</small>
+where <small>@(@
+L_y (x, y)
+@)@</small> corresponds to 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="k" id="k">k</a></big></b>
+<br>
+This is the order for this forward mode calculation and has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Note that computing the <code><i>k</i></code>-th order, uses the results of the
+previous lower order calculations which are internally stored
+in the function objects.
+
+<br>
+<br>
+<b><big><a name="xk" id="xk">xk</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i></code>
+ has prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>xk</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+ and it is the <code><i>k</i></code>-th order Taylor coefficient
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+.
+The results of the calculation are stored internally and used
+during higher order forward mode calculations.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&gt;&nbsp;0</span></font></code>
+,
+the previous call to <code><font color="blue">forward</font></code> must have for
+order 
+<code><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1</span></font></code>
+ or greater.
+
+<br>
+<br>
+<b><big><a name="rk" id="rk">rk</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>rk</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+ and it is the <code><i>k</i></code>-th order Taylor coefficient
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>R(x)</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="q" id="q">q</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the number of Taylor coefficients in the function
+that we are differentiating.
+
+<br>
+<br>
+<b><big><a name="w" id="w">w</a></big></b>
+<br>
+This vector has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>w</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>p</span></font></i><font color="blue"><span style='white-space: nowrap'>*</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+.
+For <small>@(@
+i = 0 , \ldots , p-1
+@)@</small> and <small>@(@
+k = 0 , \ldots , q-1
+@)@</small>,
+let <small>@(@
+r_i^k
+@)@</small> denote the
+<code><i>k</i></code>-th Taylor coefficients for <small>@(@
+R_i (x)
+@)@</small>
+The function we are differentiating is
+<small>@[@
+
+	W(r) = \sum_{i=0}^{p-1} \sum_{k=0}^{q-1} w_{i * q + k} r_i^k
+
+@]@</small>
+
+<br>
+<br>
+<b><big><a name="dw" id="dw">dw</a></big></b>
+<br>
+This return value has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>dw</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and its size is 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i><font color="blue"><span style='white-space: nowrap'>*</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+.
+For <small>@(@
+i = 0 , \ldots , n-1
+@)@</small> and <small>@(@
+k = 0 , \ldots , q-1
+@)@</small>,
+let <small>@(@
+X_i^k
+@)@</small> denote the <code><i>k</i></code>-th Taylor coefficients for <small>@(@
+x
+@)@</small>.
+The value 
+<code><i><font color="black"><span style='white-space: nowrap'>dw</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>*</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>+</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+ is the partial of
+<small>@(@
+W[r(X)]%
+@)@</small> with respect to <small>@(@
+X_i^k
+@)@</small>.
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br>
+The routine <a href="test_circle_implicit_newton.htm" target="_top"><span style='white-space: nowrap'>test_circle_implicit_newton</span></a>
+
+is a simple example and test using this class.
+The routine <a href="test_control_reduced_objective.htm" target="_top"><span style='white-space: nowrap'>test_control_reduced_objective</span></a>
+ is a control problem
+example and test using this class.
+
+
+<hr>Input File: src/implicit_newton.hpp
+
+</body>
+</html>

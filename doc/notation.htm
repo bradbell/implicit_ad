@@ -1,0 +1,126 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Notation</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Notation">
+<meta name="keywords" id="keywords" content=" notation dynamic sparsematrix vector matrix cppad_sparse ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_notation_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="utility.htm" target="_top">Prev</a>
+</td><td><a href="norm_squared.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>utility</option>
+<option>notation</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>utility-&gt;</option>
+<option>notation</option>
+<option>norm_squared</option>
+<option>join_vector</option>
+<option>sparse_cppad2eigen</option>
+<option>solve_lower_cppad</option>
+<option>jac_constraint</option>
+</select>
+</td>
+<td>notation</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Dynamic</option>
+<option>SparseMatrix</option>
+<option>VECTOR</option>
+<option>MATRIX</option>
+<option>CPPAD_SPARSE</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Notation</big></big></b></center>
+The file <code><font color="blue">utility.hpp</font></code> includes the following notation:
+
+
+<br>
+<br>
+<b><big><a name="Dynamic" id="Dynamic">Dynamic</a></big></b>
+
+<pre style='display:inline'><tt>
+<b><font color="#0000FF">using</font></b> Eigen<font color="#990000">::</font>Dynamic<font color="#990000">;</font>
+</tt></pre>
+<br>
+<b><big><a name="SparseMatrix" id="SparseMatrix">SparseMatrix</a></big></b>
+
+<pre style='display:inline'><tt>
+<b><font color="#0000FF">using</font></b> Eigen<font color="#990000">::</font>SparseMatrix<font color="#990000">;</font>
+</tt></pre>
+<br>
+<b><big><a name="VECTOR" id="VECTOR">VECTOR</a></big></b>
+
+<pre style='display:inline'><tt>
+<b><font color="#000080"># define</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font>  Eigen<font color="#990000">::</font>Matrix<font color="#990000">&lt;</font>Scalar<font color="#990000">,</font> Dynamic<font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">&gt;</font>
+</tt></pre>
+<br>
+<b><big><a name="MATRIX" id="MATRIX">MATRIX</a></big></b>
+
+<pre style='display:inline'><tt>
+<b><font color="#000080"># define</font></b> <b><font color="#000000">MATRIX</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font>  Eigen<font color="#990000">::</font>Matrix<font color="#990000">&lt;</font>Scalar<font color="#990000">,</font> Dynamic<font color="#990000">,</font> Dynamic<font color="#990000">&gt;</font>
+</tt></pre>
+<br>
+<b><big><a name="CPPAD_SPARSE" id="CPPAD_SPARSE">CPPAD_SPARSE</a></big></b>
+
+<pre style='display:inline'><tt>
+<b><font color="#000080"># define</font></b> <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font> <font color="#990000">\</font>
+     CppAD<font color="#990000">::</font>sparse_rcv<font color="#990000">&lt;</font> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>size_t<font color="#990000">)</font> <font color="#990000">,</font> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)</font> <font color="#990000">&gt;</font>
+</tt></pre>
+
+<hr>Input File: src/utility.hpp
+
+</body>
+</html>

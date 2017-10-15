@@ -1,0 +1,121 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Set T, p, and q</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Set T, p, and q">
+<meta name="keywords" id="keywords" content=" set t p q ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_set_t_p_and_q_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="time.htm" target="_top">Prev</a>
+</td><td><a href="repeat_kedem_gradient.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>time</option>
+<option>set_T_p_and_q</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>time-&gt;</option>
+<option>set_T_p_and_q</option>
+<option>repeat_kedem_gradient</option>
+<option>repeat_newton_gradient</option>
+<option>repeat_kedem_hessian</option>
+<option>repeat_newton_hessian</option>
+</select>
+</td>
+<td>set_T_p_and_q</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>T</option>
+<option>p</option>
+<option>q</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Set T, p, and q</big></big></b></center>
+<br>
+<b><big><a name="T" id="T">T</a></big></b>
+<br>
+This is the total time in the optimal control example.
+
+<br>
+<br>
+<b><big><a name="p" id="p">p</a></big></b>
+<br>
+This is the initial value for the state vector at time zero.
+
+<br>
+<br>
+<b><big><a name="q" id="q">q</a></big></b>
+<br>
+This is the multiplier, in the objective,
+for each component of the final state vector squared.
+
+<pre><tt><font color="#009900">void</font> <b><font color="#000000">set_T_p_and_q</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">&amp;</font> T<font color="#990000">,</font> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)&amp;</font> p<font color="#990000">,</font> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <font color="#990000">&amp;</font>q <font color="#990000">)</font>
+<font color="#FF0000">{</font>    T    <font color="#990000">=</font> <font color="#993399">1.0</font><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font>
+     p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font>
+     p<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     p<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     q<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">25.0</font><font color="#990000">;</font>
+     q<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">25.0</font><font color="#990000">;</font>
+     q<font color="#990000">[</font><font color="#993399">2</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">25.0</font><font color="#990000">;</font>
+     q<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">25.0</font><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/time.cpp
+
+</body>
+</html>

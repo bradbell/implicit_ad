@@ -1,0 +1,234 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Run CMake to Configure Implicit AD</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Run CMake to Configure Implicit AD">
+<meta name="keywords" id="keywords" content=" run cmake to configure implicit ad syntax purpose correctness testing speed exit on error check working directory cppad_pkg_config_path eigen_pkg_config_path pkg_config_path cmake_verbose_makefile cmake_build_type extra_cxx_flags usage build command ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_run_cmake.sh_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="_contents.htm" target="_top">Prev</a>
+</td><td><a href="utility.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>run_cmake.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>run_cmake.sh</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>---..Correctness Testing</option>
+<option>---..Speed Testing</option>
+<option>Exit on Error</option>
+<option>Check Working Directory</option>
+<option>cppad_pkg_config_path</option>
+<option>eigen_pkg_config_path</option>
+<option>PKG_CONFIG_PATH</option>
+<option>cmake_verbose_makefile</option>
+<option>cmake_build_type</option>
+<option>extra_cxx_flags</option>
+<option>Check Usage</option>
+<option>build Directory</option>
+<option>CMake Command</option>
+<option>Exit</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Run CMake to Configure Implicit AD</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>bin/run_cmake.sh</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This is a
+<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" target="_top"><span style='white-space: nowrap'>bash</span></a>
+
+script that configures <code><font color="blue">implicit_ad</font></code>
+by running <a href="https://en.wikipedia.org/wiki/CMake" target="_top"><span style='white-space: nowrap'>CMake</span></a>
+.
+If you do not have bash on your system,
+this script can be considered documentation for the <code><font color="blue">cmake</font></code> command.
+
+<br>
+<br>
+<b><a name="Purpose.Correctness Testing" id="Purpose.Correctness Testing">Correctness Testing</a></b>
+<br>
+After this script is run, the following commands will run the
+tests for correctness:
+<code><font color='blue'><pre style='display:inline'> 
+     cd build
+     make check
+</pre></font></code>
+<br>
+<b><a name="Purpose.Speed Testing" id="Purpose.Speed Testing">Speed Testing</a></b>
+<br>
+After this script is run, the following commands will run the
+speed tests:
+<code><font color='blue'><pre style='display:inline'> 
+     cd build
+     make time
+     ./time
+</pre></font></code>
+<br>
+<b><big><a name="Exit on Error" id="Exit on Error">Exit on Error</a></big></b>
+<br>
+The following command instructs bash to terminate, with a non-zero
+exit status, when an error occurs:
+<pre style='display:inline'><tt>
+<b><font color="#0000FF">set</font></b> -e
+</tt></pre>
+<br>
+<b><big><a name="Check Working Directory" id="Check Working Directory">Check Working Directory</a></big></b>
+<br>
+Check that the current working directory is the top level source directory.
+<pre><tt><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$0"</font> <font color="#990000">!=</font> <font color="#FF0000">'bin/run_cmake.sh'</font> <font color="#990000">]</font>
+<b><font color="#0000FF">then</font></b>
+     echo <font color="#FF0000">'bin/run_cmake.sh: must be run from its parent directory'</font>
+     <b><font color="#0000FF">exit</font></b> <font color="#993399">1</font>
+<b><font color="#0000FF">fi</font></b></tt></pre>
+<br>
+<b><big><a name="cppad_pkg_config_path" id="cppad_pkg_config_path">cppad_pkg_config_path</a></big></b>
+<br>
+This is the directory where the file <code><font color="blue">cppad.pc</font></code> file is located
+<pre style='display:inline'><tt>
+<font color="#009900">cppad_pkg_config_path</font><font color="#990000">=</font><font color="#FF0000">"$HOME/prefix/cppad/share/pkgconfig"</font>
+</tt></pre>
+<br>
+<b><big><a name="eigen_pkg_config_path" id="eigen_pkg_config_path">eigen_pkg_config_path</a></big></b>
+<br>
+This is the directory where the file <code><font color="blue">eigen3.pc</font></code> file is located.
+It is often desirable to install eigen its own special prefix
+so warnings can be suppressed for its include files without suppressing
+warnings for other include files.
+<pre style='display:inline'><tt>
+<font color="#009900">eigen_pkg_config_path</font><font color="#990000">=</font><font color="#FF0000">"$HOME/prefix/eigen/share/pkgconfig"</font>
+</tt></pre>
+<br>
+<b><big><a name="PKG_CONFIG_PATH" id="PKG_CONFIG_PATH">PKG_CONFIG_PATH</a></big></b>
+<br>
+Set the directories that are searched by
+<a href="https://en.wikipedia.org/wiki/Pkg-config" target="_top"><span style='white-space: nowrap'>pkg-config</span></a>
+.
+<pre style='display:inline'><tt>
+<b><font color="#0000FF">export</font></b> <font color="#009900">PKG_CONFIG_PATH</font><font color="#990000">=</font><font color="#FF0000">"${cppad_pkg_config_path}:${eigen_pkg_config_path}"</font>
+</tt></pre>
+<br>
+<b><big><a name="cmake_verbose_makefile" id="cmake_verbose_makefile">cmake_verbose_makefile</a></big></b>
+<br>
+If this is <code><font color="blue">true</font></code>, make will display the compile and link commands
+that it uses to build the tests.
+<pre style='display:inline'><tt>
+<font color="#009900">cmake_verbose_makefile</font><font color="#990000">=</font><font color="#FF0000">'false'</font>
+</tt></pre>
+<br>
+<b><big><a name="cmake_build_type" id="cmake_build_type">cmake_build_type</a></big></b>
+<br>
+You should use <code><font color="blue">debug</font></code> for correctness testing and
+<code><font color="blue">release</font></code> for speed testing.
+<pre style='display:inline'><tt>
+<font color="#009900">cmake_build_type</font><font color="#990000">=</font><font color="#FF0000">'release'</font>
+</tt></pre>
+<br>
+<b><big><a name="extra_cxx_flags" id="extra_cxx_flags">extra_cxx_flags</a></big></b>
+<br>
+Extra C++ flags, besides the debug and release flags,
+used during compile commands.
+<pre style='display:inline'><tt>
+<font color="#009900">extra_cxx_flags</font><font color="#990000">=</font><font color="#FF0000">'-Wall -pedantic-errors -std=c++11 -Wshadow'</font>
+</tt></pre>
+<br>
+<b><big><a name="Check Usage" id="Check Usage">Check Usage</a></big></b>
+<br>
+Make sure that <code><font color="blue">run_cmake.sh</font></code> is run from its parent directory.
+<pre><tt><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$0"</font> <font color="#990000">!=</font> <font color="#FF0000">'bin/run_cmake.sh'</font> <font color="#990000">]</font>
+<b><font color="#0000FF">then</font></b>
+     echo <font color="#FF0000">'bin/run_cmake.sh: must be run from its parent directory'</font>
+     <b><font color="#0000FF">exit</font></b> <font color="#993399">1</font>
+<b><font color="#0000FF">fi</font></b></tt></pre>
+<br>
+<b><big><a name="build Directory" id="build Directory">build Directory</a></big></b>
+<br>
+If necessary, create the build directory,
+then make it the current working directory.
+<pre><tt><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#990000">!</font> -e <font color="#FF0000">'build'</font> <font color="#990000">]</font>
+<b><font color="#0000FF">then</font></b>
+     mkdir build
+<b><font color="#0000FF">fi</font></b>
+cd build</tt></pre>
+<br>
+<b><big><a name="CMake Command" id="CMake Command">CMake Command</a></big></b>
+
+<pre><tt><font color="#009900">source_dir</font><font color="#990000">=</font><font color="#FF0000">'..'</font>
+cmake <font color="#990000">\</font>
+     -D <font color="#009900">CMAKE_VERBOSE_MAKEFILE</font><font color="#990000">=</font><font color="#FF0000">"${cmake_verbose_makefile}"</font> <font color="#990000">\</font>
+     -D <font color="#009900">CMAKE_BUILD_TYPE</font><font color="#990000">=</font><font color="#FF0000">"${cmake_build_type}"</font> <font color="#990000">\</font>
+     -D <font color="#009900">extra_cxx_flags</font><font color="#990000">=</font><font color="#FF0000">"${extra_cxx_flags}"</font> <font color="#990000">\</font>
+     <font color="#009900">${source_dir}</font></tt></pre>
+<br>
+<b><big><a name="Exit" id="Exit">Exit</a></big></b>
+<br>
+This script runs with
+<pre style='display:inline'><tt>
+echo <font color="#FF0000">'run_cmake.sh: OK'</font>
+<b><font color="#0000FF">exit</font></b> <font color="#993399">0</font>
+</tt></pre>
+
+<hr>Input File: bin/run_cmake.sh
+
+</body>
+</html>

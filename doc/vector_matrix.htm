@@ -1,0 +1,102 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Conversions Between Control Vectors and Matrices</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Conversions Between Control Vectors and Matrices">
+<meta name="keywords" id="keywords" content=" conversions between control vectors matrices xy_vec2mat ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_vector_matrix_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="control.htm" target="_top">Prev</a>
+</td><td><a href="objective.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>control</option>
+<option>vector_matrix</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>control-&gt;</option>
+<option>vector_matrix</option>
+<option>objective</option>
+<option>rec_objective</option>
+<option>constraint</option>
+<option>rec_constraint</option>
+<option>full_newton</option>
+<option>implicit_solver</option>
+<option>test_control_reduced_objective</option>
+</select>
+</td>
+<td>vector_matrix</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>xy_vec2mat</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Conversions Between Control Vectors and Matrices</big></big></b></center>
+<br>
+<b><big><a name="xy_vec2mat" id="xy_vec2mat">xy_vec2mat</a></big></b>
+
+<pre><tt><b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Scalar</font><font color="#990000">&gt;</font> <font color="#009900">void</font> <b><font color="#000000">xy_vec2mat</font></b><font color="#990000">(</font>
+<b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> xy_vec <font color="#990000">,</font> <b><font color="#000000">MATRIX</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> x_mat<font color="#990000">,</font> <b><font color="#000000">MATRIX</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> y_mat <font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#008080">size_t</font> J <font color="#990000">=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> x_mat<font color="#990000">.</font><b><font color="#000000">cols</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> J<font color="#990000">;</font> j<font color="#990000">++)</font>
+     <font color="#FF0000">{</font>    <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> <font color="#993399">2</font><font color="#990000">;</font> i<font color="#990000">++)</font>
+               <b><font color="#000000">x_mat</font></b><font color="#990000">(</font>i<font color="#990000">,</font> j<font color="#990000">)</font> <font color="#990000">=</font> xy_vec<font color="#990000">[</font> j <font color="#990000">*</font> <font color="#993399">2</font> <font color="#990000">+</font> i <font color="#990000">];</font>
+          <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> <font color="#993399">4</font><font color="#990000">;</font> i<font color="#990000">++)</font>
+               <b><font color="#000000">y_mat</font></b><font color="#990000">(</font>i<font color="#990000">,</font> j<font color="#990000">)</font> <font color="#990000">=</font> xy_vec<font color="#990000">[</font> <font color="#993399">2</font> <font color="#990000">*</font> J <font color="#990000">+</font> j <font color="#990000">*</font> <font color="#993399">4</font> <font color="#990000">+</font> i <font color="#990000">];</font>
+     <font color="#FF0000">}</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/control.hpp
+
+</body>
+</html>

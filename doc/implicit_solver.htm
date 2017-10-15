@@ -1,0 +1,351 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Control Problem Solver for Implicit Kedem or Newton Object</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Control Problem Solver for Implicit Kedem or Newton Object">
+<meta name="keywords" id="keywords" content=" control problem solver implicit kedem newton object syntax purpose l_fun al_fun criteria solve.function solve.derivative solve.linear example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_implicit_solver_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="full_newton.htm" target="_top">Prev</a>
+</td><td><a href="test_control_reduced_objective.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>control</option>
+<option>implicit_solver</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>control-&gt;</option>
+<option>vector_matrix</option>
+<option>objective</option>
+<option>rec_objective</option>
+<option>constraint</option>
+<option>rec_constraint</option>
+<option>full_newton</option>
+<option>implicit_solver</option>
+<option>test_control_reduced_objective</option>
+</select>
+</td>
+<td>implicit_solver</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>L_fun</option>
+<option>aL_fun</option>
+<option>criteria</option>
+<option>solve.function</option>
+<option>solve.derivative</option>
+<option>solve.linear</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Control Problem Solver for Implicit Kedem or Newton Object</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>control::implicit_solver&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>a</span></font></i><font color="blue"><span style='white-space: nowrap'>criteria</span></font><i><font color="black"><span style='white-space: nowrap'>)<br>
+</span></font></i></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.function(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.derivative(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear(</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+The object 
+<code><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i></code>
+ can be used with
+<a href="implicit_kedem.htm#solve" target="_top"><span style='white-space: nowrap'>implicit_kedem</span></a>
+ to compute
+derivatives of the function
+<small>@(@
+Y(x)
+@)@</small> defined by <small>@(@
+L[x, Y(x)] = 0
+@)@</small>
+for the control problem.
+
+<br>
+<br>
+<b><big><a name="L_fun" id="L_fun">L_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;CppAD::ADFun&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to the
+<a href="constraint.htm" target="_top"><span style='white-space: nowrap'>constraint</span></a>
+ function.
+
+<br>
+<br>
+<b><big><a name="aL_fun" id="aL_fun">aL_fun</a></big></b>
+<br>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;CppAD::ADFun&lt;&nbsp;CppAD::AD&lt;double&gt;&nbsp;&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the CppAD function object corresponding to the
+<a href="constraint.htm" target="_top"><span style='white-space: nowrap'>constraint</span></a>
+ function.
+This function object can be empty, if
+<a href="implicit_solver.htm#solve.derivative" target="_top"><span style='white-space: nowrap'>solve.derivative</span></a>
+
+is note used with 
+<code><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i></code>
+ equal to <code><font color="blue">CppAD::AD&lt;double&gt;</font></code>.
+An empty 
+<code><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i></code>
+ object can be created with
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CppAD::ADFun&lt;&nbsp;CppAD::AD&lt;double&gt;&nbsp;&gt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>aL_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>;<br>
+</span></font></code>
+<br>
+<b><big><a name="criteria" id="criteria">criteria</a></big></b>
+<br>
+This is the convergence criteria for <small>@(@
+L[x, Y(x)] = 0
+@)@</small>.
+To be specific, a value <small>@(@
+y
+@)@</small> is accepted if
+the Euclidean norm squared
+<small>@(@
+| L(x, y) |^2
+@)@</small> is less than 
+<code><i><font color="black"><span style='white-space: nowrap'>criteria</span></font></i></code>
+.
+
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Solve</span></font></i><font color="blue"><span style='white-space: nowrap'>&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Solver</span></font></i></code>
+ must support the default constructor
+and the assignment operator.
+It must also support the following operations:
+
+<br>
+<br>
+<b><big><a name="solve.function" id="solve.function">solve.function</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ and the return value 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(double)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(double)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The return value satisfies the relation <small>@(@
+L(x, y) = 0
+@)@</small>.
+
+<br>
+<br>
+<b><big><a name="solve.derivative" id="solve.derivative">solve.derivative</a></big></b>
+<br>
+The arguments have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The return value has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+This returns the value of <small>@(@
+L_y (x, y)
+@)@</small> for subsequent
+calls to 
+<code><i><font color="black"><span style='white-space: nowrap'>solve</span></font></i><font color="blue"><span style='white-space: nowrap'>.linear</span></font></code>
+.
+Only the elements of <small>@(@
+L_y (x, y)
+@)@</small> that depend on <small>@(@
+(x, y)
+@)@</small>
+need be included in the vector <small>@(@
+b
+@)@</small>.
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i></code>
+ is either
+<code><font color="blue">double</font></code> or <code><font color="blue">CppAD::AD&lt;double&gt;</font></code>.
+
+<br>
+<br>
+<b><big><a name="solve.linear" id="solve.linear">solve.linear</a></big></b>
+<br>
+The arguments 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>v</span></font></i></code>
+ and the return value
+
+<code><i><font color="black"><span style='white-space: nowrap'>u</span></font></i></code>
+ have prototypes
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>b</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VECTOR(</span></font><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i><font color="blue"><span style='white-space: nowrap'>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+where both vectors have size 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i></code>
+.
+The return value satisfies the equation
+<small>@[@
+
+	u = L_y (x, y)^{-1} v
+
+@]@</small>
+where <small>@(@
+L_y (x, y)
+@)@</small> corresponds to 
+<code><i><font color="black"><span style='white-space: nowrap'>b</span></font></i></code>
+.
+The type 
+<code><i><font color="black"><span style='white-space: nowrap'>Scalar</span></font></i></code>
+ is either
+<code><font color="blue">double</font></code> or <code><font color="blue">CppAD::AD&lt;double&gt;</font></code>.
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<pre><tt>
+<font color="#009900">bool</font> <b><font color="#000000">test_control_implicit_solver</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#009900">bool</font> ok      <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+     <font color="#009900">double</font> eps99 <font color="#990000">=</font> <font color="#993399">99.0</font> <font color="#990000">*</font> std<font color="#990000">::</font>numeric_limits<font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><b><font color="#000000">epsilon</font></b><font color="#990000">();</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// record L_fun</font></i>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt;double&gt;</font>       L_fun<font color="#990000">;</font>
+     <font color="#008080">size_t</font>                     J <font color="#990000">=</font> <font color="#993399">5</font><font color="#990000">;</font>
+     <font color="#009900">double</font>                     delta_t <font color="#990000">=</font> <font color="#993399">0.1</font><font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">p</font></b><font color="#990000">(</font><font color="#993399">4</font><font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> <font color="#993399">4</font><font color="#990000">;</font> i<font color="#990000">++)</font>
+          p<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.2</font><font color="#990000">;</font>
+     control<font color="#990000">::</font><b><font color="#000000">rec_constraint</font></b><font color="#990000">(</font>L_fun<font color="#990000">,</font> J<font color="#990000">,</font> delta_t<font color="#990000">,</font> p<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <font color="#008080">size_t</font> m      <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Range</font></b><font color="#990000">();</font>
+     <font color="#008080">size_t</font> n      <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Domain</font></b><font color="#990000">()</font> <font color="#990000">-</font> m<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// create implicit solver</font></i>
+     <font color="#009900">double</font> criteria  <font color="#990000">=</font> <font color="#009900">double</font><font color="#990000">(</font>n <font color="#990000">+</font> m<font color="#990000">)</font> <font color="#990000">*</font> eps99<font color="#990000">;</font>
+     CppAD<font color="#990000">::</font><font color="#008080">ADFun&lt; CppAD::AD&lt;double&gt; &gt;</font> not_used<font color="#990000">;</font>
+     control<font color="#990000">::</font><font color="#008080">implicit_solver</font> <b><font color="#000000">solver</font></b><font color="#990000">(</font>L_fun<font color="#990000">,</font> not_used<font color="#990000">,</font> criteria<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// set x</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">x</font></b><font color="#990000">(</font>n<font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> n<font color="#990000">;</font> i<font color="#990000">++)</font>
+          x<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">0.0</font><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// solve L(x, y) == 0</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> y <font color="#990000">=</font> solver<font color="#990000">.</font><b><font color="#000000">function</font></b><font color="#990000">(</font>x<font color="#990000">);</font>
+     ok <font color="#990000">&amp;=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font> y<font color="#990000">.</font><b><font color="#000000">size</font></b><font color="#990000">()</font> <font color="#990000">)</font> <font color="#990000">==</font> m<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// check L(x, y) is near zero</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">xy</font></b><font color="#990000">(</font>n <font color="#990000">+</font> m<font color="#990000">);</font>
+     <b><font color="#000000">join_vector</font></b><font color="#990000">(</font>xy<font color="#990000">,</font> x<font color="#990000">,</font> y<font color="#990000">);</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> L  <font color="#990000">=</font> L_fun<font color="#990000">.</font><b><font color="#000000">Forward</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font> xy<font color="#990000">);</font>
+     ok <font color="#990000">&amp;=</font> <b><font color="#000000">norm_squared</font></b><font color="#990000">(</font>L<font color="#990000">)</font> <font color="#990000">&lt;</font> criteria<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// solve L_y (x, y) * u = v</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">v</font></b><font color="#990000">(</font>m<font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> m<font color="#990000">;</font> i<font color="#990000">++)</font>
+          v<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#009900">double</font><font color="#990000">(</font>i <font color="#990000">-</font> <font color="#993399">5.0</font><font color="#990000">);</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> b <font color="#990000">=</font> solver<font color="#990000">.</font><b><font color="#000000">derivative</font></b><font color="#990000">(</font>x<font color="#990000">,</font> y<font color="#990000">);</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> u <font color="#990000">=</font> solver<font color="#990000">.</font><b><font color="#000000">linear</font></b><font color="#990000">(</font>b<font color="#990000">,</font> v<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// compute L_y (x, y)</font></i>
+     <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> L_y<font color="#990000">;</font>
+     CppAD<font color="#990000">::</font><font color="#008080">sparse_jac_work</font> work<font color="#990000">;</font>
+     <b><font color="#000000">jac_constraint</font></b><font color="#990000">(</font>L_y<font color="#990000">,</font> L_fun<font color="#990000">,</font> xy<font color="#990000">,</font> work<font color="#990000">);</font>
+     <font color="#008080">SparseMatrix&lt;double&gt;</font> L_y_eigen<font color="#990000">;</font>
+     <b><font color="#000000">sparse_cppad2eigen</font></b><font color="#990000">(</font>L_y<font color="#990000">,</font> L_y_eigen<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// check L_y (x, y) * u = v</font></i>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> d <font color="#990000">=</font> L_y_eigen <font color="#990000">*</font> u <font color="#990000">-</font> v<font color="#990000">;</font>
+     ok <font color="#990000">&amp;=</font> <b><font color="#000000">norm_squared</font></b><font color="#990000">(</font>d<font color="#990000">)</font> <font color="#990000">&lt;</font> criteria<font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">return</font></b> ok<font color="#990000">;</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/control.hpp
+
+</body>
+</html>

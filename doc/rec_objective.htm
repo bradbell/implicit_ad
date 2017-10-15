@@ -1,0 +1,205 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Record the Control Objective</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Record the Control Objective">
+<meta name="keywords" id="keywords" content=" record the control objective syntax prototype f_fun j delta_t q x y l ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_rec_objective_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="objective.htm" target="_top">Prev</a>
+</td><td><a href="constraint.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>control</option>
+<option>rec_objective</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>control-&gt;</option>
+<option>vector_matrix</option>
+<option>objective</option>
+<option>rec_objective</option>
+<option>constraint</option>
+<option>rec_constraint</option>
+<option>full_newton</option>
+<option>implicit_solver</option>
+<option>test_control_reduced_objective</option>
+</select>
+</td>
+<td>rec_objective</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Prototype</option>
+<option>F_fun</option>
+<option>---..J</option>
+<option>---..delta_t</option>
+<option>q</option>
+<option>---..x</option>
+<option>---..y</option>
+<option>---..L</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Record the Control Objective</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>control::rec_objective(</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>delta_t</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Prototype" id="Prototype">Prototype</a></big></b>
+
+<pre><tt>
+<b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Base</font><font color="#990000">&gt;</font> <font color="#009900">void</font>
+<b><font color="#000000">rec_objective</font></b><font color="#990000">(</font>
+     CppAD<font color="#990000">::</font>ADFun<font color="#990000">&lt;</font>Base<font color="#990000">&gt;&amp;</font>             F_fun   <font color="#990000">,</font>
+     <font color="#008080">size_t</font>                          J       <font color="#990000">,</font>
+     <b><font color="#0000FF">const</font></b> <font color="#008080">Base</font>                      delta_t <font color="#990000">,</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>Base<font color="#990000">)&amp;</font>             q       <font color="#990000">)</font></tt></pre>
+<br>
+<b><big><a name="F_fun" id="F_fun">F_fun</a></big></b>
+<br>
+The <a href="objective.htm" target="_top"><span style='white-space: nowrap'>objective</span></a>
+ function
+<small>@(@
+F : \B{R}^{2 \times J} \times \B{R}^{4 \times J} \rightarrow \B{R}
+@)@</small>
+is stored in 
+<code><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i></code>
+.
+We use 
+<code><i><font color="black"><span style='white-space: nowrap'>u</span></font></i></code>
+ to denote an 
+<code><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i></code>
+
+argument vector (size 
+<code><i><font color="black"><span style='white-space: nowrap'>6</span></font></i><font color="blue"><span style='white-space: nowrap'>*</span></font><i><font color="black"><span style='white-space: nowrap'>J</span></font></i></code>
+)
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>v</span></font></i></code>
+ a result vector (size one); e.g.,
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>v</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>F_fun</span></font></i><font color="blue"><span style='white-space: nowrap'>.Forward(0,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>u</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><a name="F_fun.J" id="F_fun.J">J</a></b>
+<br>
+is the number of time points in the control problem.
+
+<br>
+<br>
+<b><a name="F_fun.delta_t" id="F_fun.delta_t">delta_t</a></b>
+<br>
+is the step size between time points.
+
+<br>
+<br>
+<b><big><a name="q" id="q">q</a></big></b>
+<br>
+Is the objective weights for the components of the final state vector
+in the control problem.
+
+<br>
+<br>
+<b><a name="q.x" id="q.x">x</a></b>
+<br>
+For <small>@(@
+i = 0, 1
+@)@</small> and <small>@(@
+j = 0, \ldots , J-1
+@)@</small>,
+<small>@[@
+
+	u_{j * 2 + i} = x_{i,j}
+
+@]@</small>
+
+<br>
+<br>
+<b><a name="q.y" id="q.y">y</a></b>
+<br>
+For <small>@(@
+i = 0, \ldots, 3
+@)@</small> and <small>@(@
+j = 0, \ldots , J-1
+@)@</small>,
+<small>@[@
+
+	u_{2 * J + j * 4 + i} = y_{i,j}
+
+@]@</small>
+
+<br>
+<br>
+<b><a name="q.L" id="q.L">L</a></b>
+<br>
+For <small>@(@
+i = 0, \ldots, 3
+@)@</small> and <small>@(@
+j = 0, \ldots , J-1
+@)@</small>,
+<small>@[@
+
+	v_{j * 4 + i} = L_{i,j}
+
+@]@</small>
+
+
+<hr>Input File: src/control.hpp
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<html>
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath:  [ ['@(@','@)@'] ] ,
+    displayMath: [ ['@[@','@]@'] ]
+  }
+});
+</script>
+<script type='text/javascript' src=
+'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=default'
+>
+</script>
+<head>
+<title>Convert A CppAD Sparse Matrix to an Eigen Sparse Matrix</title>
+<meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
+<meta name="description" id="description" content="Convert A CppAD Sparse Matrix to an Eigen Sparse Matrix">
+<meta name="keywords" id="keywords" content=" convert cppad sparse matrix to eigen syntax prototype sparse_cppad sparse_eigen example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_sparse_cppad2eigen_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="join_vector.htm" target="_top">Prev</a>
+</td><td><a href="solve_lower_cppad.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>implicit_ad</option>
+<option>utility</option>
+<option>sparse_cppad2eigen</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>implicit_ad-&gt;</option>
+<option>run_cmake.sh</option>
+<option>utility</option>
+<option>implicit_kedem</option>
+<option>implicit_newton</option>
+<option>control</option>
+<option>time</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>utility-&gt;</option>
+<option>notation</option>
+<option>norm_squared</option>
+<option>join_vector</option>
+<option>sparse_cppad2eigen</option>
+<option>solve_lower_cppad</option>
+<option>jac_constraint</option>
+</select>
+</td>
+<td>sparse_cppad2eigen</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Prototype</option>
+<option>sparse_cppad</option>
+<option>sparse_eigen</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+@(@\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\R}[1]{{\rm #1}}@)@<center><b><big><big>Convert A CppAD Sparse Matrix to an Eigen Sparse Matrix</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>#include&nbsp;&quot;utility.hpp&quot;<br>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>sparse_cppad2eigen(</span></font><i><font color="black"><span style='white-space: nowrap'>sparse_cppad</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sparse_eigen)</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="Prototype" id="Prototype">Prototype</a></big></b>
+
+<pre><tt>
+<b><font color="#0000FF">template</font></b> <font color="#990000">&lt;</font><b><font color="#0000FF">class</font></b> <font color="#008080">Scalar</font><font color="#990000">&gt;</font> <font color="#009900">void</font>
+     <b><font color="#000000">sparse_cppad2eigen</font></b><font color="#990000">(</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font>Scalar<font color="#990000">)&amp;</font> sparse_cppad  <font color="#990000">,</font>
+     SparseMatrix<font color="#990000">&lt;</font>Scalar<font color="#990000">&gt;&amp;</font>       sparse_eigen  <font color="#990000">)</font></tt></pre>
+<br>
+<b><big><a name="sparse_cppad" id="sparse_cppad">sparse_cppad</a></big></b>
+<br>
+Is the CppAD sparse matrix that we are converting to an Eigen sparse matrix.
+
+<br>
+<br>
+<b><big><a name="sparse_eigen" id="sparse_eigen">sparse_eigen</a></big></b>
+<br>
+On input, if 
+<code><i><font color="black"><span style='white-space: nowrap'>sparse_eigen</span></font></i><font color="blue"><span style='white-space: nowrap'>.rows()</span></font></code>
+ or 
+<code><i><font color="black"><span style='white-space: nowrap'>sparse_eigen</span></font></i><font color="blue"><span style='white-space: nowrap'>.cols()</span></font></code>
+
+is zero, a new sparsity patter is allocated in 
+<code><i><font color="black"><span style='white-space: nowrap'>sparse_eigen</span></font></i></code>
+.
+Otherwise, it is assumed that the sparsity pattern in
+
+<code><i><font color="black"><span style='white-space: nowrap'>sparse_eigen</span></font></i></code>
+ corresponds to a previous call to
+<code><font color="blue">sparse_cppad2eigen</font></code>
+with the same sparsity pattern in <code><font color="blue">cppad_sparse</font></code>.
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<pre><tt>
+<font color="#009900">bool</font> <b><font color="#000000">test_sparse_cppad2eigen</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font>
+<font color="#FF0000">{</font>    <font color="#009900">bool</font> ok <font color="#990000">=</font> <b><font color="#0000FF">true</font></b><font color="#990000">;</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// create sparse_cppad</font></i>
+     <font color="#008080">size_t</font> nr  <font color="#990000">=</font> <font color="#993399">6</font><font color="#990000">;</font>
+     <font color="#008080">size_t</font> nc  <font color="#990000">=</font> nr<font color="#990000">;</font>
+     <font color="#008080">size_t</font> nnz <font color="#990000">=</font> nr  <font color="#990000">+</font> nr <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font>
+     CppAD<font color="#990000">::</font><font color="#008080">sparse_rc&lt;VECTOR(size_t)&gt;</font> <b><font color="#000000">pattern_in</font></b><font color="#990000">(</font>nr<font color="#990000">,</font> nc<font color="#990000">,</font> nnz<font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> nr<font color="#990000">;</font> k<font color="#990000">++)</font>
+          pattern_in<font color="#990000">.</font><b><font color="#000000">set</font></b><font color="#990000">(</font>k<font color="#990000">,</font> k<font color="#990000">,</font> k<font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> nr <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font> k<font color="#990000">++)</font>
+          pattern_in<font color="#990000">.</font><b><font color="#000000">set</font></b><font color="#990000">(</font>nr <font color="#990000">+</font> k<font color="#990000">,</font> k<font color="#990000">+</font><font color="#993399">1</font><font color="#990000">,</font> k<font color="#990000">);</font>
+     <b><font color="#000000">CPPAD_SPARSE</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">sparse_in</font></b><font color="#990000">(</font>pattern_in<font color="#990000">);</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">size_t</font> k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> nnz<font color="#990000">;</font> k<font color="#990000">++)</font>
+          sparse_in<font color="#990000">.</font><b><font color="#000000">set</font></b><font color="#990000">(</font>k<font color="#990000">,</font> <font color="#009900">double</font><font color="#990000">(</font>k<font color="#990000">+</font><font color="#993399">1</font><font color="#990000">));</font>
+     <i><font color="#9A1900">//</font></i>
+     <font color="#008080">SparseMatrix&lt;double&gt;</font> sparse_out<font color="#990000">;</font>
+     <b><font color="#000000">sparse_cppad2eigen</font></b><font color="#990000">(</font>sparse_in<font color="#990000">,</font> sparse_out<font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <i><font color="#9A1900">// check the result</font></i>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>size_t<font color="#990000">)</font> <b><font color="#000000">row_in</font></b><font color="#990000">(</font> sparse_in<font color="#990000">.</font><b><font color="#000000">row</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>size_t<font color="#990000">)</font> <b><font color="#000000">col_in</font></b><font color="#990000">(</font> sparse_in<font color="#990000">.</font><b><font color="#000000">col</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <b><font color="#0000FF">const</font></b> <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font><font color="#009900">double</font><font color="#990000">)</font> <b><font color="#000000">val_in</font></b><font color="#990000">(</font> sparse_in<font color="#990000">.</font><b><font color="#000000">val</font></b><font color="#990000">()</font> <font color="#990000">);</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">typename</font></b> <font color="#008080">SparseMatrix</font><font color="#990000">&lt;</font><font color="#009900">double</font><font color="#990000">&gt;::</font><font color="#008080">InnerIterator</font> iterator<font color="#990000">;</font>
+     <b><font color="#000000">VECTOR</font></b><font color="#990000">(</font>size_t<font color="#990000">)</font> col_major <font color="#990000">=</font> sparse_in<font color="#990000">.</font><b><font color="#000000">col_major</font></b><font color="#990000">();</font>
+     <font color="#008080">size_t</font> k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
+     <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#009900">int</font> c <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> c <font color="#990000">&lt;</font> sparse_out<font color="#990000">.</font><b><font color="#000000">outerSize</font></b><font color="#990000">();</font> <font color="#990000">++</font>c<font color="#990000">)</font>
+     <font color="#FF0000">{</font>    <b><font color="#0000FF">for</font></b><font color="#990000">(</font><font color="#008080">iterator</font> <b><font color="#000000">itr</font></b><font color="#990000">(</font>sparse_out<font color="#990000">,</font> c<font color="#990000">);</font> itr<font color="#990000">;</font> <font color="#990000">++</font>itr<font color="#990000">)</font>
+          <font color="#FF0000">{</font>    <font color="#008080">size_t</font> ell <font color="#990000">=</font> col_major<font color="#990000">[</font>k<font color="#990000">];</font>
+               ok <font color="#990000">&amp;=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font>itr<font color="#990000">.</font><b><font color="#000000">row</font></b><font color="#990000">())</font> <font color="#990000">==</font> row_in<font color="#990000">[</font>ell<font color="#990000">];</font>
+               ok <font color="#990000">&amp;=</font> <b><font color="#000000">size_t</font></b><font color="#990000">(</font>itr<font color="#990000">.</font><b><font color="#000000">col</font></b><font color="#990000">())</font> <font color="#990000">==</font> col_in<font color="#990000">[</font>ell<font color="#990000">];</font>
+               ok <font color="#990000">&amp;=</font> itr<font color="#990000">.</font><b><font color="#000000">value</font></b><font color="#990000">()</font> <font color="#990000">==</font> val_in<font color="#990000">[</font>ell<font color="#990000">];</font>
+               <font color="#990000">++</font>k<font color="#990000">;</font>
+          <font color="#FF0000">}</font>
+     <font color="#FF0000">}</font>
+     <i><font color="#9A1900">//</font></i>
+     <b><font color="#0000FF">return</font></b> ok<font color="#990000">;</font>
+<font color="#FF0000">}</font></tt></pre>
+
+<hr>Input File: src/utility.hpp
+
+</body>
+</html>
