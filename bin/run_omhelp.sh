@@ -12,3 +12,5 @@ fi
 cd doc
 omhelp ../implicit_ad.omh -debug -noframe -xml
 omhelp ../implicit_ad.omh -debug -noframe
+echo 'run_omhelp.sh: OK'
+exit 0
