@@ -1,0 +1,16 @@
+$begin implicit_ad$$
+
+$comment BEGIN global settings$$
+$aindex section head subhead$$
+$latex \newcommand{\B}[1]{{\bf #1}}$$
+$latex \newcommand{\R}[1]{{\rm #1}}$$
+$comment END global settings$$
+
+$section Methods For Differentiation Implicit Funtions$$
+
+$childtable%utility.omh
+	%check.cpp
+	%time.omh
+%$$
+
+$end

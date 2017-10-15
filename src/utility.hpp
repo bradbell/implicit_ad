@@ -315,8 +315,8 @@ $srcfile%utility.hpp
 1%$$
 
 $head Purpose$$
-We are given a function $latex L : \B{R}^n \timex \B{R}^m \rightarrow \B{R}^m$$
-and define the implicit function $latex Y : \B{R}^n rightarrow \B{R}^m$$ by
+We are given a function $latex L : \B{R}^n \times \B{R}^m \rightarrow \B{R}^m$$
+and define the implicit function $latex Y : \B{R}^n \rightarrow \B{R}^m$$ by
 the constraint equation
 $latex \[
 	L[ x , Y(x) ] = 0
@@ -327,7 +327,7 @@ w.r.t $latex y$$.
 $head L_y$$
 This argument must initially be created with the empty constructor; i.e.,
 $codei%
-	CPPAD_SPARSE(Scalar) %L_y%
+	CPPAD_SPARSE(%Scalar%) %L_y%
 %$$
 It's return value is a sparse matrix representation of the Jacobian
 of the constraints with respect to the implicit variables; i.e.,
@@ -345,7 +345,7 @@ is stored in $icode L_fun$$.
 
 $head xy$$
 This is the argument $latex (x, y)$$ at which we are evaluating the Jacobian.
-It size is $codei%n%+%m%$$.
+It size is $icode%n%+%m%$$.
 
 $head work$$
 This is a work vector used to reduce the work.
