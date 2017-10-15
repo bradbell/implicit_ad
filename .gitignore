@@ -4,6 +4,7 @@ git_commit.sh
 build
 # temporary directory used for stashing files
 new
+new.*
 # temporary files
 junk
 junk.*
