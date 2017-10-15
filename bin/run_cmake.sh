@@ -30,6 +30,23 @@
 # If you do not have bash on your system,
 # this script can be considered documentation for the &code cmake&& command.
 #
+# &subhead Correctness Testing&&
+# After this script is run, the following commands will run the
+# tests for correctness:
+# &codep
+#	cd build
+#	make check
+# &&
+#
+# &subhead Speed Testing&&
+# After this script is run, the following commands will run the
+# speed tests:
+# &codep
+#	cd build
+#	make time
+#	./time
+# &&
+#
 # &head Exit on Error&&
 # The following command instructs bash to terminate, with a non-zero
 # exit status, when an error occurs:

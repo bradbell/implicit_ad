@@ -31,15 +31,18 @@ pkg_check_modules(eigen3 REQUIRED eigen3)
 print_variable(eigen3_INCLUDE_DIRS)
 INCLUDE_DIRECTORIES( SYSTEM ${eigen3_INCLUDE_DIRS} )
 #
-# check
-ADD_EXECUTABLE(check
-	src/check.cpp
+# run_check
+ADD_EXECUTABLE(run_check
+	src/run_check.cpp
 	src/control.cpp
 	src/utility.cpp
 	src/implicit_kedem.cpp
 	src/implicit_newton.cpp
 )
-SET_TARGET_PROPERTIES(check PROPERTIES COMPILE_FLAGS "${extra_cxx_flags}")
+SET_TARGET_PROPERTIES(run_check PROPERTIES COMPILE_FLAGS "${extra_cxx_flags}")
+#
+# check
+ADD_CUSTOM_TARGET(check run_check DEPENDS run_check)
 #
 # time
 ADD_EXECUTABLE(time

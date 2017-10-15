@@ -1,8 +1,10 @@
 // ---------------------------------------------------------------------------
-// run tests
+// run correctness tests
 // ---------------------------------------------------------------------------
-// test runner
+//
+// thread_alloc
 # include <cppad/utility/thread_alloc.hpp>
+// run
 # include <cppad/utility/test_boolofvoid.hpp>
 
 // utility routines
@@ -25,7 +27,7 @@ extern bool test_cricle_implicit_newton(void);
 int main(void)
 {
 	// create test runner
-	CppAD::test_boolofvoid run("hiad", 30);
+	CppAD::test_boolofvoid run("implicit_ad", 30);
 	//
 	// utility tests
 	run(test_sparse_cppad2eigen,            "sparse_cppad2eigen");
