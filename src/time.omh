@@ -1,6 +1,6 @@
 $begin time$$
 
-$section Timing Tests$$
+$section Timing Comparison of Methods$$
 
 $childtable%time.cpp
 %$$

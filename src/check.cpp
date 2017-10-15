@@ -1,16 +1,3 @@
-/*
-$begin check$$
-
-$section Check Implicit Function Derivative Computations$$
-
-$contents%implicit_kedem.hpp
-	%implicit_newton.hpp
-	%control.hpp
-	%control.cpp
-%$$
-
-$end
-*/
 // ---------------------------------------------------------------------------
 // run tests
 // ---------------------------------------------------------------------------

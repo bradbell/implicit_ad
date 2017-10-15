@@ -6,10 +6,12 @@ $latex \newcommand{\B}[1]{{\bf #1}}$$
 $latex \newcommand{\R}[1]{{\rm #1}}$$
 $comment END global settings$$
 
-$section Methods For Differentiation Implicit Funtions$$
+$section AD Methods That Differentiate Implicit Functions$$
 
 $childtable%utility.omh
-	%check.cpp
+	%implicit_kedem.hpp
+	%implicit_newton.hpp
+	%control.omh
 	%time.omh
 %$$
 

@@ -1,0 +1,9 @@
+$begin control$$
+
+$section The Control Test Problem$$
+
+$childtable%control.hpp
+	%control.cpp
+%$$
+
+$end
