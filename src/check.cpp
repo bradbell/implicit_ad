@@ -1,5 +1,5 @@
 /*
-$begin main$$
+$begin check$$
 $aindex section head subhead$$
 $latex \newcommand{\B}[1]{{\bf #1}}$$
 $latex \newcommand{\R}[1]{{\rm #1}}$$

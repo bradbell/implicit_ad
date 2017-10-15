@@ -19,11 +19,13 @@ FOREACH(package cppad eigen3)
 ENDFOREACH(package)
 #
 #
-ADD_EXECUTABLE(main
-	src/main.cpp
+ADD_EXECUTABLE(check
+	src/check.cpp
 	src/control.cpp
 	src/utility.cpp
 	src/implicit_kedem.cpp
 	src/implicit_newton.cpp
 )
-ADD_CUSTOM_TARGET(check main DEPENDS main)
+ADD_EXECUTABLE(time
+	src/time.cpp
+)
