@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash
 # $OMhelpKeyCharacter=&
 # &begin run_cmake.sh&& &newlinech #&&
 # &spell
@@ -29,6 +29,13 @@
 # by running &href%https://en.wikipedia.org/wiki/CMake%CMake%&&.
 # If you do not have bash on your system,
 # this script can be considered documentation for the &code cmake&& command.
+#
+# &head Exit on Error&&
+# The following command instructs bash to terminate, with a non-zero
+# exit status, when an error occurs:
+# &srccode%sh%
+set -e
+# %&&
 #
 # &head cppad_pkg_config_path&&
 # This is the directory where the file &code cppad.pc&& file is located
@@ -102,6 +109,13 @@ cmake \
 	-D CMAKE_BUILD_TYPE="${cmake_build_type}" \
 	-D extra_cxx_flags="${extra_cxx_flags}" \
 	${source_dir}
+# %&&
+#
+# &head Exit &&
+# This script runs with
+# &srccode%sh%
+echo 'run_cmake.sh: OK'
+exit 0
 # %&&
 #
 # &end
