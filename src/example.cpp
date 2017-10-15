@@ -83,7 +83,6 @@ int main(void)
 
 	// check zero order Taylor coefficient
 	vector<double> x0(1), z0(1);
-	double check;
 	x0[0] = x;
 	z0    = full.Forward(0, x0);
 	ok &= fabs(1.0 - z0[0] / Y0(x) ) <= eps;

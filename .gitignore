@@ -1,0 +1,9 @@
+# script used to make git commits
+git_commit.sh
+# directory where object and executables are built
+build
+# temporary files
+junk
+junk.*
+# editor swap files
+*.swp
