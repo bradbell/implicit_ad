@@ -97,7 +97,7 @@ cmake_verbose_makefile='false'
 # You should use &code debug&& for correctness testing and
 # &code release&& for speed testing.
 # &srccode%sh%
-cmake_build_type='release'
+cmake_build_type='debug'
 # %&&
 #
 # &head extra_cxx_flags&&
