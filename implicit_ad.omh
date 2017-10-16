@@ -12,7 +12,7 @@ $head Git Repository$$
 $href%https://github.com/bradbell/implicit_ad%$$
 
 $head Current Version$$
-$code implicit_ad-20171015$$
+$code implicit_ad-20171016$$
 
 $childtable%bin/run_cmake.sh
 	%src/utility.omh
