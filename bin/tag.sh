@@ -63,14 +63,16 @@ then
 		echo "	git tag -d $tag"
 		echo "	git push --delete origin $tag"
 	done
+	exit 1
 fi
 #
 # create this tag for master
 git tag -a -m "create tag for source code branch" $version master
-git push origin master-$version
+git push origin $version
 #
 # create this tag for gh-pages
 git tag -a -m "create tag for documentation branch" doc-$version gh-pages
+git push origin doc-$version
 #
 echo 'tag.sh: OK'
 exit 0
