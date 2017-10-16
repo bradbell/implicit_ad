@@ -15,7 +15,7 @@ if [ "$1" == 'set' ]
 then
 	version=`date +%Y%m%d`
 	sed -i CMakeLists.txt \
-		-e "s|\(SET( *implicit_ad_version\)* \"[0-9]\{8\}\"|\1 \"$version\")|"
+		-e "s|\(SET( *implicit_ad_version\)* \"[0-9]\{8\}\"|\1 \"$version\"|"
 	sed -i implicit_ad.omh \
 		-e "s|implicit_ad-[0-9]\\{8\\}|implicit_ad-$version|"
 fi
