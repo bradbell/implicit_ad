@@ -26,18 +26,40 @@ then
 	exit 1
 fi
 #
+# check that chages have been pushed
+for branch in master gh-pages
+do
+	local_hash=`git show-ref $branch | grep 'refs/heads/' \
+		sed -e 's| *refs/heads/.*||'`
+	remote_hash=`git show-ref $branch | grep 'refs/remotes/' \
+		sed -e 's| *refs/remotes/.*||'`
+	if [ "$local_hash" != "$remote_hash"  ]
+	then
+		echo "Local and remote version of $branch are different"
+		git show-ref $branch
+		echo "you must first push or abort your changes."
+		exit 1
+	fi
+done
+#
 # check if tag already exists
-if git tag --list | grep "$version"
+list=`git tag --list | grep "$version"`
+if [ "$list" != '' ]
 then
-	echo 'This git referece tag already exists. Delete old version ?'
-	echo "	git tag -d $version"
-	echo "	git push --delete origin $version"
-	exit 1
+	echo 'An tags for this version already exists. Delete old tags ?'
+	for tag in $list
+	do
+		echo "	git tag -d $tag"
+		echo "	git push --delete origin $tag"
+	done
 fi
 #
-# create this tag
-git tag -a -m "create new release" $version
-git push origin $version
+# create this tag for master
+git tag -a -m "create tag for source code branch" src-$version master
+git push origin master-$version
+#
+# create this tag for gh-pages
+git tag -a -m "create tag for documentation branch" doc-$version gh-pages
 #
 echo 'tag.sh: OK'
 exit 0
