@@ -18,6 +18,7 @@ var list_down0 = [
 ];
 var list_current0 = [
 'implicit_ad.htm#Git Repository',
+'implicit_ad.htm#Current Version',
 'implicit_ad.htm#Contents'
 ];
 function choose_across0(item)
