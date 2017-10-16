@@ -11,6 +11,9 @@ $section AD Methods That Differentiate Implicit Functions$$
 $head Git Repository$$
 $href%https://github.com/bradbell/implicit_ad%$$
 
+$head Current Version$$
+$code implicit_ad-20171014$$
+
 $childtable%bin/run_cmake.sh
 	%src/utility.omh
 	%src/implicit_kedem.hpp
