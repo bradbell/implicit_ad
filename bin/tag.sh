@@ -37,8 +37,9 @@ then
 fi
 #
 # check that chages have been pushed
-for branch in master gh-pages
+for branch in gh-pages master
 do
+	git checkout $branch
 	local_hash=`git show-ref $branch | grep 'refs/heads/' | \
 		sed -e 's| *refs/heads/.*||'`
 	remote_hash=`git show-ref $branch | grep 'refs/remotes/' | \
@@ -65,7 +66,7 @@ then
 fi
 #
 # create this tag for master
-git tag -a -m "create tag for source code branch" src-$version master
+git tag -a -m "create tag for source code branch" $version master
 git push origin master-$version
 #
 # create this tag for gh-pages
