@@ -26,6 +26,16 @@ then
 	exit 1
 fi
 #
+# check that gh-pages branch is up to date
+bin/gh_pages.sh
+list=`git status -s`
+if [ "$list" != '' ]
+then
+	echo 'tag.sh: git status -s is not empty (for gh-pages branch)'
+	echo 'You must commit or abort changes before creating this tag'
+	exit 1
+fi
+#
 # check that chages have been pushed
 for branch in master gh-pages
 do
