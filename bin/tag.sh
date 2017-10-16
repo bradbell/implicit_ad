@@ -29,9 +29,9 @@ fi
 # check that chages have been pushed
 for branch in master gh-pages
 do
-	local_hash=`git show-ref $branch | grep 'refs/heads/' \
+	local_hash=`git show-ref $branch | grep 'refs/heads/' | \
 		sed -e 's| *refs/heads/.*||'`
-	remote_hash=`git show-ref $branch | grep 'refs/remotes/' \
+	remote_hash=`git show-ref $branch | grep 'refs/remotes/' | \
 		sed -e 's| *refs/remotes/.*||'`
 	if [ "$local_hash" != "$remote_hash"  ]
 	then
