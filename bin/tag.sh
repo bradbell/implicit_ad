@@ -54,7 +54,9 @@ do
 done
 #
 # check if tag already exists
+set +e
 list=`git tag --list | grep "$version"`
+set -e
 if [ "$list" != '' ]
 then
 	echo 'An tags for this version already exists. Delete old tags ?'
