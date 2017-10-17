@@ -27,7 +27,7 @@ then
 fi
 #
 # check that gh-pages branch is up to date
-bin/gh_pages.sh
+bin/gh_pages.sh > /dev/null
 list=`git status -s`
 if [ "$list" != '' ]
 then
