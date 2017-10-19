@@ -1,6 +1,5 @@
 
 # The MIT License
-<strong>SPDX short identifier: MIT</strong>
 
 Copyright 2017 University of Washington
 
