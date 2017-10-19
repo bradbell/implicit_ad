@@ -1,6 +1,8 @@
 
+# The MIT License
+<p><strong>SPDX short identifier: MIT</strong></p>
 
-<p>Copyright &lt;YEAR&gt; &lt;COPYRIGHT HOLDER&gt;</p>
+<p>Copyright 2017 University of Washington</p>
 
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
