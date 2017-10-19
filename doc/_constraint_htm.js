@@ -11,6 +11,7 @@ var list_up0 = [
 'constraint.htm'
 ];
 var list_down2 = [
+'license.htm',
 'run_cmake.sh.htm',
 'utility.htm',
 'implicit_kedem.htm',

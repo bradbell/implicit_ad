@@ -9,6 +9,7 @@ var list_up0 = [
 'implicit_ad.htm'
 ];
 var list_down0 = [
+'license.htm',
 'run_cmake.sh.htm',
 'utility.htm',
 'implicit_kedem.htm',

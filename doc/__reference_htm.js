@@ -10,6 +10,7 @@ var list_up0 = [
 '_reference.htm'
 ];
 var list_down1 = [
+'license.htm',
 'run_cmake.sh.htm',
 'utility.htm',
 'implicit_kedem.htm',
@@ -22,6 +23,7 @@ var list_current0 = [
 '_reference.htm#F',
 '_reference.htm#I',
 '_reference.htm#J',
+'_reference.htm#L',
 '_reference.htm#N',
 '_reference.htm#O',
 '_reference.htm#R',

@@ -11,6 +11,7 @@ var list_up0 = [
 'test_circle_implicit_kedem.htm'
 ];
 var list_down2 = [
+'license.htm',
 'run_cmake.sh.htm',
 'utility.htm',
 'implicit_kedem.htm',

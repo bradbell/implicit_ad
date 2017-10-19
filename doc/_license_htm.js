@@ -7,7 +7,7 @@ var list_across0 = [
 ];
 var list_up0 = [
 'implicit_ad.htm',
-'control.htm'
+'license.htm'
 ];
 var list_down1 = [
 'license.htm',
@@ -17,19 +17,6 @@ var list_down1 = [
 'implicit_newton.htm',
 'control.htm',
 'time.htm'
-];
-var list_down0 = [
-'vector_matrix.htm',
-'objective.htm',
-'rec_objective.htm',
-'constraint.htm',
-'rec_constraint.htm',
-'full_newton.htm',
-'implicit_solver.htm',
-'test_control_reduced_objective.htm'
-];
-var list_current0 = [
-'control.htm#Contents'
 ];
 function choose_across0(item)
 {	var index          = item.selectedIndex;
