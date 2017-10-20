@@ -2,7 +2,7 @@
 # preamble
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT(implicit_ad)
-SET(implicit_ad_version "20171019")
+SET(implicit_ad_version "20171020")
 #
 # print_variable
 MACRO(print_variable variable_name)
