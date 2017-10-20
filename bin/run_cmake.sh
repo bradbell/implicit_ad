@@ -79,11 +79,23 @@ cppad_pkg_config_path="$HOME/prefix/cppad/share/pkgconfig"
 eigen_pkg_config_path="$HOME/prefix/eigen/share/pkgconfig"
 # %&&
 #
+# &head ipopt_pkg_config_path&&
+# The install of &code cppad&& may be done in a way that uses the
+# &code ipopt&& libraries. If this is the case, you must change the following
+# setting to the directory where the file &code ipopt.pc& is located.
+# &srccode%sh%
+ipopt_pkg_config_path=""
+# %&&
+#
 # &head PKG_CONFIG_PATH&&
 # Set the directories that are searched by
 # &href%https://en.wikipedia.org/wiki/Pkg-config%pkg-config%&&.
 # &srccode%sh%
-export PKG_CONFIG_PATH="${cppad_pkg_config_path}:${eigen_pkg_config_path}"
+PKG_CONFIG_PATH="${cppad_pkg_config_path}:${eigen_pkg_config_path}"
+if [ "$ipopt_pkg_config_path" != "" ]
+then
+	PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${ipopt_pkg_config_path}"
+fi
 # %&&
 #
 # &head cmake_verbose_makefile&&
