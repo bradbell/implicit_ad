@@ -27,6 +27,7 @@ var list_current0 = [
 'run_cmake.sh.htm#Check Working Directory',
 'run_cmake.sh.htm#cppad_pkg_config_path',
 'run_cmake.sh.htm#eigen_pkg_config_path',
+'run_cmake.sh.htm#ipopt_pkg_config_path',
 'run_cmake.sh.htm#PKG_CONFIG_PATH',
 'run_cmake.sh.htm#cmake_verbose_makefile',
 'run_cmake.sh.htm#cmake_build_type',

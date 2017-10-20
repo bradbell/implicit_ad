@@ -15,7 +15,7 @@ MathJax.Hub.Config({
 <title>Run CMake to Configure Implicit AD</title>
 <meta http-equiv='Content-Type' content='text/html' charset='utf-8'>
 <meta name="description" id="description" content="Run CMake to Configure Implicit AD">
-<meta name="keywords" id="keywords" content=" run cmake to configure implicit ad syntax purpose correctness testing speed exit on error check working directory cppad_pkg_config_path eigen_pkg_config_path pkg_config_path cmake_verbose_makefile cmake_build_type extra_cxx_flags usage build command ">
+<meta name="keywords" id="keywords" content=" run cmake to configure implicit ad syntax purpose correctness testing speed exit on error check working directory cppad_pkg_config_path eigen_pkg_config_path ipopt_pkg_config_path pkg_config_path cmake_verbose_makefile cmake_build_type extra_cxx_flags usage build command ">
 <style type='text/css'>
 body { color : black }
 body { background-color : white }
@@ -71,6 +71,7 @@ A:active { color : purple }
 <option>Check Working Directory</option>
 <option>cppad_pkg_config_path</option>
 <option>eigen_pkg_config_path</option>
+<option>ipopt_pkg_config_path</option>
 <option>PKG_CONFIG_PATH</option>
 <option>cmake_verbose_makefile</option>
 <option>cmake_build_type</option>
@@ -160,14 +161,27 @@ warnings for other include files.
 <font color="#009900">eigen_pkg_config_path</font><font color="#990000">=</font><font color="#FF0000">"$HOME/prefix/eigen/share/pkgconfig"</font>
 </tt></pre>
 <br>
+<b><big><a name="ipopt_pkg_config_path" id="ipopt_pkg_config_path">ipopt_pkg_config_path</a></big></b>
+<br>
+The install of <code><font color="blue">cppad</font></code> may be done in a way that uses the
+<code><font color="blue">ipopt</font></code> libraries. If this is the case, you must change the following
+setting to the directory where the file <code><font color="blue">ipopt.pc</font></code> is located
+(otherwise, the <code><font color="blue">cmake</font></code> command will report the error message
+<code><font color="blue">'ipopt' required by 'cppad'</font></code>).
+<pre style='display:inline'><tt>
+<font color="#009900">ipopt_pkg_config_path</font><font color="#990000">=</font><font color="#FF0000">""</font>
+</tt></pre>
+<br>
 <b><big><a name="PKG_CONFIG_PATH" id="PKG_CONFIG_PATH">PKG_CONFIG_PATH</a></big></b>
 <br>
 Set the directories that are searched by
 <a href="https://en.wikipedia.org/wiki/Pkg-config" target="_top"><span style='white-space: nowrap'>pkg-config</span></a>
 .
-<pre style='display:inline'><tt>
-<b><font color="#0000FF">export</font></b> <font color="#009900">PKG_CONFIG_PATH</font><font color="#990000">=</font><font color="#FF0000">"${cppad_pkg_config_path}:${eigen_pkg_config_path}"</font>
-</tt></pre>
+<pre><tt><font color="#009900">PKG_CONFIG_PATH</font><font color="#990000">=</font><font color="#FF0000">"${cppad_pkg_config_path}:${eigen_pkg_config_path}"</font>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$ipopt_pkg_config_path"</font> <font color="#990000">!=</font> <font color="#FF0000">""</font> <font color="#990000">]</font>
+<b><font color="#0000FF">then</font></b>
+     <font color="#009900">PKG_CONFIG_PATH</font><font color="#990000">=</font><font color="#FF0000">"${PKG_CONFIG_PATH}:${ipopt_pkg_config_path}"</font>
+<b><font color="#0000FF">fi</font></b></tt></pre>
 <br>
 <b><big><a name="cmake_verbose_makefile" id="cmake_verbose_makefile">cmake_verbose_makefile</a></big></b>
 <br>

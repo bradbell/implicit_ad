@@ -5,7 +5,7 @@ Keyword =
 [
 'implicit_ad  AD Methods That Differentiate Implicit Functions  ',' git repository current version ',
 'license  Implicit AD License  ',' ',
-'run_cmake.sh  Run CMake to Configure Implicit AD  ',' syntax purpose correctness testing speed exit error check working directory cppad_pkg_config_path eigen_pkg_config_path cmake_verbose_makefile cmake_build_type extra_cxx_flags usage command ',
+'run_cmake.sh  Run CMake to Configure Implicit AD  ',' syntax purpose correctness testing speed exit error check working directory cppad_pkg_config_path eigen_pkg_config_path ipopt_pkg_config_path cmake_verbose_makefile cmake_build_type extra_cxx_flags usage command ',
 'utility  Utilities Used by All Methods  ',' ',
 'notation  Notation  ',' dynamic sparsematrix vector cppad_sparse ',
 'norm_squared  Norm Squared of a Vector  ',' ',
