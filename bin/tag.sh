@@ -27,7 +27,16 @@ then
 fi
 #
 # check that gh-pages branch is up to date
-bin/gh_pages.sh > /dev/null
+if ! bin/gh_pages.sh > /dev/null
+then
+	# make sure on master branch
+	git checkout -q master
+	# print error message
+	bin/gh_pages.sh
+	# bash shell should exit durring command aboive
+	echo 'programming error in bin/tag.sh'
+	exit 1
+fi
 list=`git status -s`
 if [ "$list" != '' ]
 then
