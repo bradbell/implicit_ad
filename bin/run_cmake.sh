@@ -15,6 +15,7 @@
 #	config
 #	pkgconfig
 #	eigen
+#	ipopt
 # &&
 #
 # &section Run CMake to Configure Implicit AD&&
@@ -82,7 +83,9 @@ eigen_pkg_config_path="$HOME/prefix/eigen/share/pkgconfig"
 # &head ipopt_pkg_config_path&&
 # The install of &code cppad&& may be done in a way that uses the
 # &code ipopt&& libraries. If this is the case, you must change the following
-# setting to the directory where the file &code ipopt.pc& is located.
+# setting to the directory where the file &code ipopt.pc&& is located
+# (otherwise, the &code cmake&& command will report the error message
+# &code 'ipopt' required by 'cppad'&&).
 # &srccode%sh%
 ipopt_pkg_config_path=""
 # %&&
