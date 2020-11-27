@@ -1,5 +1,4 @@
-# Title
-AD Methods That Differentiate Implicit Functions
+# AD Methods That Differentiate Implicit Functions
 
 # Support
 This package is no under development or supported.
